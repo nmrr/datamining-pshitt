@@ -8,7 +8,7 @@ Exemple d'attaque :
 
 #####  {"username": "usr", "try": 1, "src_port": 59880, "software_version": "libssh2_1.4.3", "timestamp": "2017-08-01T00:01:42.666293", "src_ip": "138.197.0.147", "mac": "hmac-sha1", "cipher": "aes128-ctr", "password": "usr"}
 
-Dans cette attaque, l'attaquant a essayé de se connecter avec l'identifiant **usr** et le mot de passe **usr**. Cette attaque vient des **USA**, cette information a été obtenue à partir de son adresse IP. Ces informations là sont les plus intéressantes, les autres informations n'apportent que peu d'informations.
+Dans cette attaque, l'attaquant a essayé de se connecter avec l'identifiant **usr** et le mot de passe **usr** le **01/08/2017** à **01H42**. Cette attaque vient des **USA**, cette information a été obtenue à partir de son adresse IP. Ces informations là sont les plus intéressantes, les autres informations n'apportent que peu d'informations.
 
 Dans un premier temps, l'objectif a été de visualiser ces données. **D3.js** a été utilisé pour visualiser de manière générale les données (représentation des attaquants sur une carte géographique, statistiques sur les usernames/passwords les plus utilisés, etc). A l'aide de **Linkurious.js** (sigma.js amélioré), ces données ont été représentées sous la forme d'arbres : des corrélations entre les attaques et leur provenance sont réalisées.
 Dans un deuxième temps, un outil de visualisation des nouvelles attaques a été créé. Cet outil permet de déterminer les nouvelles attaques qui, jusqu'à une certaine date n'ont jamais été tentées. Cela permet de déterminer les nouvelles tendances et donc, les nouvelles cibles.
