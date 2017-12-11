@@ -10,7 +10,7 @@ Exemple d'attaque :
 
 Dans cette attaque, l'attaquant a essayé de se connecter avec l'identifiant **usr** et le mot de passe **usr**. Cette attaque vient des **USA**, cette information a été obtenue à partir de son adresse IP. Ces informations là sont les plus intéressantes, les autres informations n'apportent que peu d'informations.
 
-Dans un premier temps, l'objectif a été de visualiser ces données. **D3.js** a été utilisé pour visualiser de manière générale les données (représentation des attaquants sur une carte géographique, statistiques sur les usernames/passwords les plus utilisés, etc). A l'aide de** Linkurious.js** (sigma.js amélioré), ces données ont été représentées sous la forme d'arbres : des corrélations entre les attaques et leur provenance sont réalisées.
+Dans un premier temps, l'objectif a été de visualiser ces données. **D3.js** a été utilisé pour visualiser de manière générale les données (représentation des attaquants sur une carte géographique, statistiques sur les usernames/passwords les plus utilisés, etc). A l'aide de **Linkurious.js** (sigma.js amélioré), ces données ont été représentées sous la forme d'arbres : des corrélations entre les attaques et leur provenance sont réalisées.
 Dans un deuxième temps, un outil de visualisation des nouvelles attaques a été créé. Cet outil permet de déterminer les nouvelles attaques qui, jusqu'à une certaine date n'ont jamais été tentées. Cela permet de déterminer les nouvelles tendances et donc, les nouvelles cibles.
 
 -----------------------------------
@@ -41,3 +41,6 @@ Lancer le logiciel : **node script.js**
 
 Ouvrir le navigateur Internet et se rendre à l'adresse suivante : **http://127.0.0.1:8888**
 
+-----------------------------------
+
+Un dataset d'une semaine de récolte de données est présent dans le dossier **ressources**.
