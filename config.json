@@ -1,0 +1,4 @@
+{
+  "geoIP": "./ressources/GeoIPCountryWhois.csv",
+  "sshLogs": "./ressources/dataset.log"
+}

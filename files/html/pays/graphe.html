@@ -1,0 +1,231 @@
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <script src="/static/bootstrap/js/jquery.min.js"></script>
+  <script src="/static/bootstrap/js/tether.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!-- START SIGMA IMPORTS -->
+<script src="/static/linkurious/src/sigma.core.js"></script>
+<script src="/static/linkurious/src/conrad.js"></script>
+<script src="/static/linkurious/src/utils/sigma.utils.js"></script>
+<script src="/static/linkurious/src/utils/sigma.polyfills.js"></script>
+<script src="/static/linkurious/src/sigma.settings.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.dispatcher.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.configurable.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.graph.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.camera.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.quad.js"></script>
+<script src="/static/linkurious/src/captors/sigma.captors.mouse.js"></script>
+<script src="/static/linkurious/src/captors/sigma.captors.touch.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.canvas.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.webgl.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.svg.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.def.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.utils.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.edges.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.labels.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+<script src="/static/linkurious/src/middlewares/sigma.middlewares.rescale.js"></script>
+<script src="/static/linkurious/src/middlewares/sigma.middlewares.copy.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.animation.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.bindEvents.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.bindDOMEvents.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.drawHovers.js"></script>
+<!-- END SIGMA IMPORTS -->
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/settings.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.nodes.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.nodes.fast.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.edges.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.edges.fast.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.edges.arrow.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.labels.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.hovers.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.cross.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.diamond.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.equilateral.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.square.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.star.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.curve.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.arrow.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+
+<script src="/static/linkurious/plugins/sigma.parsers.json/sigma.parsers.json.js"></script>
+<script src="/static/linkurious/plugins/sigma.exporters.svg/sigma.exporters.svg.js"></script>
+<script src="/static/linkurious/plugins/sigma.layouts.forceAtlas2.min.js"></script>
+
+
+<div id="container">
+  <style>
+    #graph-webgl-right{
+      top: 0px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+    }
+  </style>
+  <div id="graph-webgl-right">
+    <h3><p class="font-weight-bold" id="titre"></p></h3>
+
+    <button type="button" class="btn btn-primary" id="startstop">START</button>
+    <button type="button" class="btn btn-primary" id="gravity">GRAVITY OFF</button>
+    <button type="button" class="btn btn-primary" id="save">SAVE</button></br>
+
+  </div>
+</div>
+<script>
+
+	var spatialisation = false;
+  var gravity = false;
+
+  	function getParameter()
+	{
+		var url = window.location.href;
+		var urlArguments = "";
+		var copyData = false;
+
+		for (var i=0;i<url.length;i++)
+		{
+		if (url[i] === '?') copyData = true;
+		if (copyData === true) urlArguments += url[i];
+		}
+
+		return urlArguments;
+	}
+
+  var xhttpPays = new XMLHttpRequest();
+  xhttpPays.onreadystatechange = function() 
+  {
+    if (this.readyState == 4) 
+    {
+      if (this.status >= 100)
+      {
+        if (this.status == 200)
+        {
+          try 
+          {
+              paysJson = JSON.parse(this.responseText);
+          }
+          catch (e) 
+          {
+            paysJson = undefined;
+            alert("Parsing error:", e); 
+          }
+
+          if (paysJson !== undefined)
+          {
+            document.getElementById('titre').innerHTML = paysJson.text;
+
+            var settings = {
+              labelThreshold: 0,
+              //labelColor: "node",
+              labelSize: "proportional",
+              sideMargin:25,
+              maxNodeSize:25,
+              labelSizeRatio: 2,
+              labelAlignment: "center",
+              defaultLabelColor: "#000000",
+            };
+            s = new sigma({
+              graph: paysJson,
+              settings: settings
+            });
+            // Initialize camera:
+            s.addCamera('cam1'),
+            // Initialize the two renderers:
+            s.addRenderer({
+              container: document.getElementById('graph-webgl-right'),
+              type: 'webgl',
+              camera: 'cam1'
+            });
+            s.refresh();
+
+            document.getElementById("gravity").onclick = function() 
+            {
+              if (gravity === false)
+              {
+                document.getElementById("gravity").firstChild.data = "GRAVITY ON";
+                gravity = true;
+              }
+              else
+              {
+                document.getElementById("gravity").firstChild.data = "GRAVITY OFF";
+                gravity = false;
+              }
+            }
+
+            document.getElementById("startstop").onclick = function() 
+            {
+              if (spatialisation === false)
+              {
+                if (gravity === false)
+                {
+                  s.startForceAtlas2({worker: true, barnesHutOptimize: true, iterationsPerRender:5, outboundAttractionDistribution:false,startingIterations:5, scalingRatio:50, gravity:10});
+                }
+                else
+                {
+                  s.startForceAtlas2({worker: true, barnesHutOptimize: true, iterationsPerRender:5, outboundAttractionDistribution:true,startingIterations:5, strongGravityMode:true});
+                }
+                document.getElementById("startstop").firstChild.data = "STOP";
+                spatialisation = true;
+              }
+              else
+              {
+                s.killForceAtlas2();
+                document.getElementById("startstop").firstChild.data = "START";
+                spatialisation = false;
+              }
+            }
+
+            document.getElementById("save").onclick = function() 
+            {
+              s.toSVG({labels: true,classes: false,data: true,download: true,filename: 'output.svg'});
+            }
+
+
+          }
+        }
+        else
+        {
+          alert("status : " + this.status + ", " + this.responseText);
+        } 
+      }
+    }
+  };
+
+  xhttpPays.open("GET", "/generator/pays.json" + getParameter(), true);
+  xhttpPays.send();
+
+
+
+
+</script>
+</body>
+</html>
+

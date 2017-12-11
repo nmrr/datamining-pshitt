@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+h1 {text-align:center;}
+</style>
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <script src="/static/bootstrap/js/jquery.min.js"></script>
+  <script src="/static/bootstrap/js/tether.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<form name="form" action="/static/html/pays/graphe.html" method="get" target="_blank" onsubmit="validateForm()">
+
+<input type="hidden" name="listepays" id="listepays" value="">
+
+<div class="form-group">
+  <label for="data">Type de données</label>
+  <select name="data" class="form-control" id="data">
+  <option value="username">username</option>
+  <option value="password">password</option>
+  <option value="usernamepassword">usernamepassword</option>
+  </select>
+</div>
+
+<div class="form-group">
+<label for="start" id="debuttxt">Date de début</label> 
+  <input type="date" class="form-control" name="debut" id="start" disabled onChange="changementDate();">
+</div>
+
+<div class="form-group">
+<label for="end" id="fintxt">Date de fin</label> 
+  <input type="date" class="form-control" name="fin" id="end" disabled onChange="changementDate();">
+</div>
+
+<div class="form-group">
+<label for="pays">Pays</label> 
+  <select multiple name="" class="form-control" id="pays" disabled size=20>
+  </select>
+</div>
+
+<div class="checkbox">
+  <label for="paysappbox">Tous les pays</label> 
+  <input type="checkbox" id="paysappbox" value="1">
+</div>
+
+<div class="form-group">
+  <label for="isolate">Supprimer les noeuds isolés</label>
+  <input type="checkbox" name="isolate" id="isolate" value="1">
+</div>
+
+<div class="form-group">
+  <input type="submit" class="form-control" id="submit" value="Envoyer" disabled>
+</div>
+</form>
+
+</body>
+
+<script>
+
+function validateForm() {
+
+  if (document.getElementById("paysappbox").checked == false)
+  {
+    var liste = document.getElementById("pays");
+    var listeArg = "";
+    var trait = false;
+
+    for (var i=0;i<liste.options.length;i++)
+    {
+      if (liste.options[i].selected == true)
+      {
+        if (trait === true) listeArg += "-";
+        listeArg += String(liste.options[i].value);
+        trait = true;
+      }
+    }
+
+    if (listeArg.length === 0)
+    {
+      alert("pas de pays pour l'apprentissage")
+      return false;
+    }
+    else document.getElementById("listepays").value = listeArg; 
+  }
+  else
+  {
+    document.getElementById("listepays").value = "false"; 
+  }
+
+  return true;
+}
+
+function changementDate()
+{
+  var xhttpPays = new XMLHttpRequest();
+  xhttpPays.onreadystatechange = function() 
+  {
+    if (this.readyState == 4) 
+    {
+      if (this.status >= 100)
+      {
+        if (this.status == 200)
+        {
+          try 
+          {
+              paysJson = JSON.parse(this.responseText);
+          }
+          catch (e) 
+          {
+            paysJson = undefined;
+            alert("Parsing error:", e); 
+          }
+
+          if (paysJson !== undefined)
+          {
+            var formHTML = "";
+            for (var i=0;i<paysJson.country.length;i++)
+            {
+              formHTML += "<option value=\"" + paysJson.country[i].id + "\">" + paysJson.country[i].string + " (" + String(paysJson.country[i].value) + ")" + "</option>\n";
+            }
+
+            document.getElementById("pays").innerHTML = formHTML;
+            document.getElementById("pays").size= (paysJson.country.length > 20 ? 20 : paysJson.country.length);
+            document.getElementById("pays").disabled = false;
+
+            document.getElementById("debuttxt").style.color = "#5cb85c";
+            document.getElementById("start").style = "border-color: #5cb85c;";
+
+            document.getElementById("fintxt").style.color = "#5cb85c";
+            document.getElementById("end").style = "border-color: #5cb85c;";
+          }
+        }
+        else
+        {
+          //alert("status : " + this.status + ", " + this.responseText);
+          document.getElementById("debuttxt").style.color = "#ff0000";
+          document.getElementById("start").style = "border-color: #ff0000;";
+
+          document.getElementById("fintxt").style.color = "#ff0000";
+          document.getElementById("end").style = "border-color: #ff0000;";
+        } 
+      }
+    }
+  };
+
+  xhttpPays.open("GET", "/info/pays.json?debut=" + document.getElementById("start").value + "&fin=" + document.getElementById("end").value , true);
+  xhttpPays.send();
+}
+
+var paysJson = undefined;
+
+var xhttpPays = new XMLHttpRequest();
+xhttpPays.onreadystatechange = function() 
+{
+  if (this.readyState == 4) 
+  {
+    if (this.status >= 100)
+    {
+      if (this.status == 200)
+      {
+        try 
+        {
+            paysJson = JSON.parse(this.responseText);
+        }
+        catch (e) 
+        {
+          paysJson = undefined;
+          alert("Parsing error:", e); 
+        }
+
+        if (paysJson !== undefined)
+        {
+          var formHTML = "";
+
+          for (var i=0;i<paysJson.country.length;i++)
+          {
+            formHTML += "<option value=\"" + paysJson.country[i].id + "\">" + paysJson.country[i].string + " (" + String(paysJson.country[i].value) + ")" + "</option>\n";
+          }
+
+          document.getElementById("pays").innerHTML = formHTML;
+          document.getElementById("pays").size= (paysJson.country.length > 20 ? 20 : paysJson.country.length);
+          document.getElementById("pays").disabled = false;
+        }
+      }
+      else
+      {
+        alert("status : " + this.status + ", " + this.responseText);
+      } 
+    }
+  }
+};
+
+var xhttpDate = new XMLHttpRequest();
+xhttpDate.onreadystatechange = function() 
+{
+  if (this.readyState == 4) 
+  {
+    if (this.status >= 100)
+    {
+      if (this.status == 200)
+      {
+        try 
+        {
+            limits = JSON.parse(this.responseText);
+        }
+        catch (e) 
+        {
+          limits = undefined;
+            alert("Parsing error:", e); 
+        }
+
+        if (limits !== undefined)
+        {
+          year1 = limits.year1;
+          month1 = limits.month1;
+          day1 = limits.day1;
+
+          year2 = limits.year2;
+          month2 = limits.month2;
+          day2 = limits.day2;
+
+          var dateString = "";
+
+          var element = String(limits.year1);
+          while(element.length < 4) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.month1);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.day1);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element;
+          document.getElementById("start").value = dateString;
+          document.getElementById("debuttxt").innerHTML += " (limite : " + dateString + ")";
+          document.getElementById("debuttxt").style.color = "#5cb85c";
+          document.getElementById("start").style = "border-color: #5cb85c;";
+
+          document.getElementById("start").setAttribute("min", dateString);
+          document.getElementById("end").setAttribute("min", dateString);
+
+          ///////////////////////////////////////////////////
+
+          dateString = "";
+
+          element = String(limits.year2);
+          while(element.length < 4) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.month2);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.day2);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element;
+          document.getElementById("end").value = dateString;
+          document.getElementById("fintxt").innerHTML += " (limite : " + dateString + ")";
+          document.getElementById("fintxt").style.color = "#5cb85c";
+          document.getElementById("end").style = "border-color: #5cb85c;";
+
+          document.getElementById("start").setAttribute("max", dateString);
+          document.getElementById("end").setAttribute("max", dateString);
+
+          document.getElementById("submit").disabled = false;
+          document.getElementById("start").disabled = false;
+          document.getElementById("end").disabled = false;
+
+          xhttpPays.open("GET", "/info/pays.json?debut=" + document.getElementById("start").value + "&fin=" + document.getElementById("end").value , true);
+          xhttpPays.send();
+        }
+      }
+      else
+      {
+        alert("status : " + this.status + ", " + this.responseText);
+      } 
+    }
+  }
+};
+
+xhttpDate.open("GET", "/info/dateslimites.json", true);
+xhttpDate.send();
+
+
+</script>
+
+</html>

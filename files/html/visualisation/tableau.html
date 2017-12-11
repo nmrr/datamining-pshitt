@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<p id="table"></p>
+
+<script>
+
+function getParameter()
+{
+  var url = window.location.href;
+  var urlArguments = "";
+  var copyData = false;
+
+  for (var i=0;i<url.length;i++)
+  {
+    if (url[i] === '?') copyData = true;
+    if (copyData === true) urlArguments += url[i];
+  }
+
+  return "/generator/visualisation.json" + urlArguments;
+}
+
+function getName()
+{
+  var url = window.location.href;
+  const searchString = "data=";
+  var name = "";
+
+  var n = url.search(searchString);
+  if (n !== -1)
+  {
+    n += searchString.length;
+    for (var i=n;i<url.length;i++)
+    {
+      if (url[i] === '&') break;
+      else name += url[i];
+    }
+  }
+
+  return name;
+}
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() 
+{
+  if (this.readyState == 4) 
+  {
+    if (this.status >= 100)
+    {
+      if (this.status == 200)
+      {
+
+        var object = undefined;
+
+        try 
+        {
+          object = JSON.parse(this.responseText);
+        }
+        catch (e) 
+        {
+          document.getElementById("table").innerHTML = "Parsing error : " + e;
+          object = undefined;
+        }
+
+        if (object !== undefined)
+        {
+          var htmlTable = "<table><tr><th>" + getName() + "</th><th>Number of occurrence</th></tr>";
+
+          for (var i=0;i<object.children.length;i++)
+          {
+            htmlTable += "<tr>";
+            htmlTable += "<td>" + object.children[i].name + "</td>";
+            htmlTable += "<td>" + object.children[i].size + "</td>";
+            htmlTable += "</tr>";
+          }
+
+          htmlTable += "</table>";
+
+          document.getElementById("table").innerHTML = htmlTable;
+        }
+
+
+      }
+      else
+      {
+        alert("status : " + this.status + ", " + this.responseText);
+        document.getElementById("table").innerHTML = "";
+      } 
+    }
+  }
+};
+
+xhttp.open("GET", getParameter(), true);
+xhttp.send();
+document.getElementById("table").innerHTML = "Loading..."
+
+</script>
+
+</body>
+</html>

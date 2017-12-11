@@ -1,0 +1,60 @@
+<html>
+<head>
+<meta charset="utf-8">
+<link href="/static/d3-geomap/css/d3.geomap.css" rel="stylesheet">
+<script src="/static/d3-geomap/vendor/d3.geomap.dependencies.min.js"></script>
+<script src="/static/d3-geomap/js/d3.geomap.min.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<script>
+
+function getParameter()
+{
+  var url = window.location.href;
+  var urlArguments = "";
+  var copyData = false;
+
+  for (var i=0;i<url.length;i++)
+  {
+    if (url[i] === '?') copyData = true;
+    if (copyData === true) urlArguments += url[i];
+  }
+
+  return urlArguments;
+}
+
+const coef = 3;
+
+var colorArray = new Array(0);
+colorArray.push('rgb(0, 0, 255)');
+for (var i=0;i<coef;i++) colorArray.push('rgb(0, 255, 0)');
+for (var i=0;i<coef*coef;i++) colorArray.push('rgb(255, 255, 0)');
+for (var i=0;i<coef*coef*coef;i++) colorArray.push('rgb(255, 0, 0)');
+for (var i=0;i<coef*coef*coef*coef;i++) colorArray.push('rgb(0, 0, 0)');
+
+
+var map = d3.geomap.choropleth()
+    .geofile('/static/d3-geomap/topojson/world/countries.json')
+    .colors(colorArray)
+    .column('value')
+    .domain([0, 100])
+    .legend(false)
+    .unitId('country')
+
+d3.csv('/generator/carte.csv' + getParameter(), function(error, data) {
+
+  if (error)
+  {
+    alert("Error : " + error.responseText);
+    throw error;
+  }
+
+    d3.select('#map')
+        .datum(data)
+        .call(map.draw, map);
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+h1 {text-align:center;}
+</style>
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <script src="/static/bootstrap/js/jquery.min.js"></script>
+  <script src="/static/bootstrap/js/tether.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<form name="form" action="/form/visualisation2.html" method="get" target="_blank" onChange="getData();">
+
+<div class="form-group">
+<label for="data">Type de données</label>
+  <select name="data" class="form-control" id="data">
+  <option value="username">username</option>
+  <option value="password">password</option>
+  <option value="usernamepassword">usernamepassword</option>
+  </select>
+</div>
+
+<div class="form-group">
+<label for="start" id="debuttxt">Date de début</label> 
+  <input type="date" class="form-control" name="debut" id="start">
+</div>
+
+<div class="form-group">
+<label for="end" id="fintxt">Date de fin</label> 
+  <input type="date" class="form-control" name="fin" id="end">
+</div>
+
+
+<div class="form-group">
+<label for="username">Username</label> 
+  <input type="text" class="form-control" name="username" id="username" disabled>
+</div>
+
+<div class="form-group">
+<label for="password">Password</label> 
+  <input type="text" class="form-control" name="password" id="password" disabled>
+</div>
+
+<div class="form-group">
+<label for="data">Type d'affichage</label>
+  <select name="affichage" class="form-control" id="affichage">
+  <option value="linear">graphe dans le temps</option>
+  <option value="cercle">graphe en cercle</option>
+  <option value="tableau">tableau</option>
+  <option value="carte">carte</option>
+  </select>
+</div>
+
+<div class="form-group">
+<input type="submit" class="form-control" id="submit" value="Envoyer" disabled>
+</div>
+</form>
+
+</body>
+
+<script>
+
+getData();
+
+function getData()
+{
+  if (document.getElementById("data").value === "username")
+  {
+    document.getElementById("username").disabled = false;
+    document.getElementById("password").disabled = true;
+  }
+  else if (document.getElementById("data").value === "password")
+  {
+    document.getElementById("username").disabled = true;
+    document.getElementById("password").disabled = false;
+  }
+  else
+  {
+    document.getElementById("username").disabled = false;
+    document.getElementById("password").disabled = false;
+  }
+}
+
+var year1 = 0, month1 = 0, day1 = 0, year2 = 0, month2 = 0, day2 = 0;
+
+var limits = undefined;
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() 
+{
+  if (this.readyState == 4) 
+  {
+    if (this.status >= 100)
+    {
+      if (this.status == 200)
+      {
+        try 
+        {
+            limits = JSON.parse(this.responseText);
+        }
+        catch (e) 
+        {
+          limits = undefined;
+            alert("Parsing error:", e); 
+        }
+
+        if (limits !== undefined)
+        {
+          year1 = limits.year1;
+          month1 = limits.month1;
+          day1 = limits.day1;
+
+          year2 = limits.year2;
+          month2 = limits.month2;
+          day2 = limits.day2;
+
+          var dateString = "";
+
+          var element = String(limits.year1);
+          while(element.length < 4) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.month1);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.day1);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element;
+          document.getElementById("start").value = dateString;
+          document.getElementById("debuttxt").innerHTML += " (limite : " + dateString + ")";
+
+          document.getElementById("start").setAttribute("min", dateString);
+          document.getElementById("end").setAttribute("min", dateString);
+
+          ///////////////////////////////////////////////////
+
+          dateString = "";
+
+          element = String(limits.year2);
+          while(element.length < 4) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.month2);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.day2);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element;
+          document.getElementById("end").value = dateString;
+          document.getElementById("fintxt").innerHTML += " (limite : " + dateString + ")";
+
+          document.getElementById("start").setAttribute("max", dateString);
+          document.getElementById("end").setAttribute("max", dateString);
+
+          document.getElementById("submit").disabled = false;
+        }
+      }
+      else
+      {
+        alert("status : " + this.status + ", " + this.responseText);
+      } 
+    }
+  }
+};
+
+xhttp.open("GET", "/info/dateslimites.json", true);
+xhttp.send();
+
+
+</script>
+
+</html>

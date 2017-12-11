@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <script src="/static/bootstrap/js/jquery.min.js"></script>
+  <script src="/static/bootstrap/js/tether.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+
+body {
+  background-color: #FFFFFF;
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 3em bottom 2em, center;
+  background-attachment:fixed, fixed;
+  background-size: 15% auto, auto 100%;
+}
+
+</style>
+
+<body>
+
+<script>
+
+document.body.style["background-image"] = 'url("/static/background/logo.png"), url("/static/background/background-' + String(Math.floor(Math.random()*4+1)) + '.png")';
+
+</script>
+
+
+<h1 style="color:blue; text-align:center;">Analyse de logs d'un faux serveur SSH</h1>
+</br>
+</br>
+
+<div class="text-center">
+
+<button type="button" class="btn btn-primary" onClick="window.open('/static/html/visualisation/form.html');">Visualisation générale des données</button>
+</br>
+</br>
+<button type="button" class="btn btn-primary" onClick="window.open('/static/html/visualisation2/form.html');">Visualisation spécifique aux usernames et aux passwords</button>
+</br>
+</br>
+<button type="button" class="btn btn-primary" onClick="window.open('/static/html/pays/form.html');">Visualisation des attaques par pays</button>
+</br>
+</br>
+<button type="button" class="btn btn-primary" onClick="window.open('/static/html/anomalie/form.html');">Visualisation des nouvelles attaques</button>
+</body>
+</html>

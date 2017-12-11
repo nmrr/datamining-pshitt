@@ -1,0 +1,233 @@
+<!-- START SIGMA IMPORTS -->
+<script src="/static/linkurious/src/sigma.core.js"></script>
+<script src="/static/linkurious/src/conrad.js"></script>
+<script src="/static/linkurious/src/utils/sigma.utils.js"></script>
+<script src="/static/linkurious/src/utils/sigma.polyfills.js"></script>
+<script src="/static/linkurious/src/sigma.settings.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.dispatcher.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.configurable.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.graph.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.camera.js"></script>
+<script src="/static/linkurious/src/classes/sigma.classes.quad.js"></script>
+<script src="/static/linkurious/src/captors/sigma.captors.mouse.js"></script>
+<script src="/static/linkurious/src/captors/sigma.captors.touch.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.canvas.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.webgl.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.svg.js"></script>
+<script src="/static/linkurious/src/renderers/sigma.renderers.def.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.nodes.def.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.nodes.fast.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.edges.def.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.edges.fast.js"></script>
+<script src="/static/linkurious/src/renderers/webgl/sigma.webgl.edges.arrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.labels.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.hovers.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.curve.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.arrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.def.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.curve.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.arrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.edgehovers.curvedArrow.js"></script>
+<script src="/static/linkurious/src/renderers/canvas/sigma.canvas.extremities.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.utils.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.nodes.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.edges.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.edges.curve.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.labels.def.js"></script>
+<script src="/static/linkurious/src/renderers/svg/sigma.svg.hovers.def.js"></script>
+<script src="/static/linkurious/src/middlewares/sigma.middlewares.rescale.js"></script>
+<script src="/static/linkurious/src/middlewares/sigma.middlewares.copy.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.animation.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.bindEvents.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.bindDOMEvents.js"></script>
+<script src="/static/linkurious/src/misc/sigma.misc.drawHovers.js"></script>
+<!-- END SIGMA IMPORTS -->
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/settings.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.nodes.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.nodes.fast.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.edges.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.edges.fast.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/webgl/sigma.webgl.edges.arrow.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.labels.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.hovers.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.cross.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.diamond.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.equilateral.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.square.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.nodes.star.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.def.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.curve.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.arrow.js"></script>
+<script src="/static/linkurious/plugins/sigma.renderers.linkurious/canvas/sigma.canvas.edges.curvedArrow.js"></script>
+
+<div id="container">
+  <style>
+    #graph-webgl-right{
+      top: 0px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+    }
+  </style>
+  <div id="graph-webgl-right"></div>
+</div>
+<script>
+
+function getParameter()
+{
+  var url = window.location.href;
+  var urlArguments = "";
+  var copyData = false;
+
+  for (var i=0;i<url.length;i++)
+  {
+    if (url[i] === '?') copyData = true;
+    if (copyData === true) urlArguments += url[i];
+  }
+
+  return urlArguments;
+}
+
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() 
+{
+  if (this.readyState == 4) 
+  {
+    if (this.status >= 100)
+    {
+      if (this.status == 200)
+      {
+        var object = undefined;
+        try 
+        {
+          object = JSON.parse(this.responseText);
+        }
+        catch (e) 
+        {
+          console.error("Parsing error : ", e); 
+        }
+
+        if (object !== undefined)
+        {
+          var vectorUsername = [], vectorPassword = [];
+          var map = {};
+
+          for (var i = 0; i < object.couples.length; i++)
+          {
+            if (map.hasOwnProperty(object.couples[i].u) === false)
+            {
+              map[object.couples[i].u] = 0;
+              vectorUsername.push(object.couples[i].u);
+            }
+          }
+
+          map = {};
+
+          for (var i = 0; i < object.couples.length; i++)
+          {
+            if (map.hasOwnProperty(object.couples[i].p) === false)
+            {
+              map[object.couples[i].p] = 0;
+              vectorPassword.push(object.couples[i].p);
+            }
+          }
+
+          map = {};
+
+          var g = {
+            nodes: [],
+            edges: []
+          }
+
+          const L = vectorUsername.length+vectorPassword.length;
+          var mapUsername = {};
+          var mapPassword = {};
+
+          for (var i=0;i<L;i++)
+          {
+
+            var o = undefined;
+
+            if (i < vectorUsername.length)
+            {
+              mapUsername[vectorUsername[i]] = i;
+
+              o = {
+                id: i,
+                label: object.username[vectorUsername[i]],
+                grid_x: L * Math.cos(Math.PI * 2 * i / L - Math.PI / 2),
+                grid_y: L * Math.sin(Math.PI * 2 * i / L - Math.PI / 2),
+                grid_size: 10,
+                grid_color: '#FF0000',
+                grid_type: 'square'
+              };
+            }
+            else
+            {
+              mapPassword[vectorPassword[i-vectorUsername.length]] = i;
+
+              o = {
+                id: i,
+                label: object.password[vectorPassword[i-vectorUsername.length]],
+                grid_x: L * Math.cos(Math.PI * 2 * i / L - Math.PI / 2),
+                grid_y: L * Math.sin(Math.PI * 2 * i / L - Math.PI / 2),
+                grid_size: 10,
+                grid_color: '#00FF00',
+                grid_type: 'diamond'
+              };
+            }
+
+            ['x', 'y', 'size', 'color', 'type'].forEach(function(val) {
+              o[val] = o['grid_' + val];
+            });
+
+            g.nodes.push(o);
+          }
+
+          for (var i = 0; i < object.couples.length; i++)
+          {
+            g.edges.push({
+              id: i,
+              source: mapUsername[object.couples[i].u],
+              target: mapPassword[object.couples[i].p]
+            });
+          }
+
+          s = new sigma({
+            graph: g,
+            settings: 
+            {
+              labelThreshold: 0,
+              labelAlignment: "center"
+            }
+          });
+
+          // Initialize camera:
+          s.addCamera('cam1'),
+          // Initialize the two renderers:
+          s.addRenderer({
+            container: document.getElementById('graph-webgl-right'),
+            type: 'webgl',
+            camera: 'cam1'
+          });
+          s.refresh();
+        }
+      }
+      else
+      {
+        alert("status : " + this.status + ", " + this.responseText);
+      } 
+    }
+  }
+};
+
+xhttp.open("GET", "/generator/usernamepassword.json" + getParameter(), true);
+xhttp.send();
+
+</script>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+h1 {text-align:center;}
+</style>
+
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+  <script src="/static/bootstrap/js/jquery.min.js"></script>
+  <script src="/static/bootstrap/js/tether.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<form name="form" action="/static/html/anomalie/graphe.html" method="get" target="_blank" onsubmit="return validateForm()">
+
+<input type="hidden" name="listepaysapp" id="listepaysapp" value="">
+<input type="hidden" name="listepays" id="listepays" value="">
+
+<div class="form-group">
+  <label for="data">Type de données</label>
+  <select name="data" class="form-control" id="data">
+  <option value="username">username</option>
+  <option value="password">password</option>
+  <option value="usernamepassword">usernamepassword</option>
+  </select>
+</div>
+
+<div class="form-group">
+<label for="debutapp" id="debutapptxt">Début de l'apprentissage</label> 
+  <input type="date" class="form-control" name="debutapp" id="debutapp" disabled onChange="changementDate1();">
+</div>
+
+<div class="form-group">
+<label for="finapp" id="finapptxt">Fin de l'apprentissage</label> 
+  <input type="date" class="form-control" name="finapp" id="finapp" disabled onChange="changementDate2();">
+</div>
+
+<div class="form-group">
+<label for="fin" id="fintxt">Fin de la recherche</label> 
+  <input type="date" class="form-control" name="fin" id="fin" disabled onChange="changementDate3();">
+</div>
+
+<div class="form-group">
+<label for="seuilapp">Seuil d'apprentissage</label> 
+  <input type="number" min="1" value="1" class="form-control" name="seuilapp" id="seuilapp" >
+</div>
+
+<div class="form-group">
+<label for="seuil">Seuil d'anomalie</label> 
+  <input type="number" min="1" value="10" class="form-control" name="seuil" id="seuil" >
+</div>
+
+<div class="form-group">
+<label for="paysapp">Pays pour l'apprentissage</label> 
+  <select multiple name="" class="form-control" id="paysapp" disabled size=20>
+  </select>
+</div>
+
+<div class="checkbox">
+  <label for="paysappbox">Tous les pays pour l'apprentissage</label> 
+  <input type="checkbox" id="paysappbox" value="1">
+</div>
+
+<div class="form-group">
+<label for="pays">Pays</label> 
+  <select multiple name="" class="form-control" id="pays" disabled size=20>
+  </select>
+</div>
+
+<div class="checkbox">
+  <label for="paysbox">Tous les pays</label> 
+  <input type="checkbox" id="paysbox" value="1">
+</div>
+
+<div class="form-group">
+  <input type="submit" class="form-control" id="submit" value="Envoyer" disabled>
+</div>
+</form>
+
+</body>
+
+<script>
+
+var paysappJson = undefined;
+var paysJson = undefined;
+
+function validateForm() {
+
+  if (document.getElementById("paysappbox").checked == false)
+  {
+    var liste = document.getElementById("paysapp");
+    var listeArg = "";
+    var trait = false;
+
+    for (var i=0;i<liste.options.length;i++)
+    {
+      if (liste.options[i].selected == true)
+      {
+        if (trait === true) listeArg += "-";
+        listeArg += String(liste.options[i].value);
+        trait = true;
+      }
+    }
+
+    if (listeArg.length === 0)
+    {
+      alert("pas de pays pour l'apprentissage")
+      return false;
+    }
+    else document.getElementById("listepaysapp").value = listeArg; 
+  }
+  else
+  {
+    document.getElementById("listepaysapp").value = "false"; 
+  }
+  
+  if (document.getElementById("paysbox").checked == false)
+  {
+    var liste = document.getElementById("pays");
+    var listeArg = "";
+    var trait = false;
+
+    for (var i=0;i<liste.options.length;i++)
+    {
+      if (liste.options[i].selected == true)
+      {
+        if (trait === true) listeArg += "-";
+        listeArg += String(liste.options[i].value);
+        trait = true;
+      }
+    }
+    
+    if (listeArg.length === 0)
+    {
+      alert("pas de pays")
+      return false;
+    }
+    else document.getElementById("listepays").value = listeArg; 
+  }
+  else
+  {
+    document.getElementById("listepays").value = "false"; 
+  }
+
+  return true
+}
+
+function changementDate1()
+{
+  var xhttpPaysapp = new XMLHttpRequest();
+  xhttpPaysapp.onreadystatechange = function() 
+  {
+    if (this.readyState == 4) 
+    {
+      if (this.status >= 100)
+      {
+        if (this.status == 200)
+        {
+          try 
+          {
+              paysappJson = JSON.parse(this.responseText);
+          }
+          catch (e) 
+          {
+            paysappJson = undefined;
+            alert("Parsing error:", e); 
+          }
+
+          if (paysappJson !== undefined)
+          {
+            var formHTML = "";
+            for (var i=0;i<paysappJson.country.length;i++)
+            {
+              formHTML += "<option value=\"" + paysappJson.country[i].id + "\">" + paysappJson.country[i].string + " (" + String(paysappJson.country[i].value) + ")" + "</option>\n";
+            }
+
+            document.getElementById("paysapp").innerHTML = formHTML;
+            document.getElementById("paysapp").size= (paysappJson.country.length > 20 ? 20 : paysappJson.country.length);
+            document.getElementById("paysapp").disabled = false;
+            document.getElementById("debutapptxt").style.color = "#5cb85c";
+            document.getElementById("debutapp").style = "border-color: #5cb85c;";
+          }
+        }
+        else
+        {
+          document.getElementById("paysapp").disabled = true;
+          document.getElementById("debutapptxt").style.color = "#ff0000";
+          document.getElementById("debutapp").style = "border-color: #ff0000;";
+          //alert("status : " + this.status + ", " + this.responseText);
+        } 
+      }
+    }
+  };
+
+  xhttpPaysapp.open("GET", "/info/pays.json?debut=" + document.getElementById("debutapp").value + "&fin=" + document.getElementById("finapp").value , true);
+  xhttpPaysapp.send();
+  //document.getElementById("paysapp").innerHTML = "";
+}
+
+function changementDate2()
+{
+  changementDate1();
+  changementDate3();
+}
+
+function changementDate3()
+{
+  var xhttpPays = new XMLHttpRequest();
+  xhttpPays.onreadystatechange = function() 
+  {
+    if (this.readyState == 4) 
+    {
+      if (this.status >= 100)
+      {
+        if (this.status == 200)
+        {
+          try 
+          {
+              paysJson = JSON.parse(this.responseText);
+          }
+          catch (e) 
+          {
+            paysJson = undefined;
+            alert("Parsing error:", e); 
+          }
+
+          if (paysJson !== undefined)
+          {
+            var formHTML = "";
+            for (var i=0;i<paysJson.country.length;i++)
+            {
+              formHTML += "<option value=\"" + paysJson.country[i].id + "\">" + paysJson.country[i].string + " (" + String(paysJson.country[i].value) + ")" + "</option>\n";
+            }
+
+            document.getElementById("pays").innerHTML = formHTML;
+            document.getElementById("pays").size= (paysJson.country.length > 20 ? 20 : paysJson.country.length);
+            document.getElementById("pays").disabled = false;
+            document.getElementById("fintxt").style.color = "#5cb85c";
+            document.getElementById("fin").style = "border-color: #5cb85c;";
+          }
+        }
+        else
+        {
+          document.getElementById("pays").disabled = true;
+          document.getElementById("fintxt").style.color = "#ff0000";
+          document.getElementById("fin").style = "border-color: #ff0000;";
+          //alert("status : " + this.status + ", " + this.responseText);
+        } 
+      }
+    }
+  };
+
+  xhttpPays.open("GET", "/info/pays.json?suivant=1&debut=" + document.getElementById("finapp").value + "&fin=" + document.getElementById("fin").value , true);
+  xhttpPays.send();
+  //document.getElementById("pays").innerHTML = "";
+}
+
+var xhttpDate = new XMLHttpRequest();
+xhttpDate.onreadystatechange = function() 
+{
+  if (this.readyState == 4) 
+  {
+    if (this.status >= 100)
+    {
+      if (this.status == 200)
+      {
+        try 
+        {
+            limits = JSON.parse(this.responseText);
+        }
+        catch (e) 
+        {
+          limits = undefined;
+            alert("Parsing error:", e); 
+        }
+
+        if (limits !== undefined)
+        {
+          year1 = limits.year1;
+          month1 = limits.month1;
+          day1 = limits.day1;
+
+          year2 = limits.year2;
+          month2 = limits.month2;
+          day2 = limits.day2;
+
+          var dateString = "";
+
+          var element = String(limits.year1);
+          while(element.length < 4) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.month1);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.day1);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element;
+          document.getElementById("debutapp").value = dateString;
+          document.getElementById("debutapptxt").innerHTML += " (limite : " + dateString + ")";
+          document.getElementById("debutapptxt").style.color = "#5cb85c";
+          document.getElementById("debutapp").style = "border-color: #5cb85c;";
+
+          document.getElementById("debutapp").setAttribute("min", dateString);
+          document.getElementById("finapp").setAttribute("min", dateString);
+          document.getElementById("fin").setAttribute("min", dateString);
+
+          document.getElementById("finapp").value = dateString;
+
+          ///////////////////////////////////////////////////
+
+          dateString = "";
+
+          element = String(limits.year2);
+          while(element.length < 4) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.month2);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(limits.day2);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element;
+          document.getElementById("fin").value = dateString;
+          document.getElementById("fintxt").innerHTML += " (limite : " + dateString + ")";
+          document.getElementById("fintxt").style.color = "#5cb85c";
+          document.getElementById("fin").style = "border-color: #5cb85c;";
+
+          document.getElementById("debutapp").setAttribute("max", dateString);
+          document.getElementById("finapp").setAttribute("max", dateString);
+          document.getElementById("fin").setAttribute("max", dateString);
+
+          document.getElementById("submit").disabled = false;
+          document.getElementById("debutapp").disabled = false;
+          document.getElementById("finapp").disabled = false;
+          document.getElementById("fin").disabled = false;
+
+          changementDate2();
+        }
+      }
+      else
+      {
+        alert("status : " + this.status + ", " + this.responseText);
+      } 
+    }
+  }
+};
+
+xhttpDate.open("GET", "/info/dateslimites.json", true);
+xhttpDate.send();
+
+</script>
+
+</html>
