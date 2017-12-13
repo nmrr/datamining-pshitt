@@ -3593,7 +3593,7 @@ public:
                             }
                         }
 
-                        textPart.SetString(string(vectorUsername[it->first.first] + " - " + vectorUsername[it->first.second]).c_str(), allocator);
+                        textPart.SetString(string(vectorUsername[it->first.first] + " - " + vectorPassword[it->first.second]).c_str(), allocator);
                         node.AddMember("id", it->second.id, allocator);
                         node.AddMember("label", textPart, allocator);
                         node.AddMember("x", dist(rd), allocator);
