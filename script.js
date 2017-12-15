@@ -44,7 +44,7 @@ if (configJSON.geoIP === undefined || configJSON.sshLogs === undefined)
 // Lecture des logs
 addonNodejs.readfile(configJSON.geoIP, configJSON.sshLogs);
 
-var logStream = fs.createWriteStream(__dirname + '/log/log.txt', {'flags': 'a'});
+var logStream = fs.createWriteStream(__dirname + '/logs/log.txt', {'flags': 'a'});
 
 function log(req)
 {
