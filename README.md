@@ -19,13 +19,13 @@ Dans un deuxième temps, un outil de visualisation des nouvelles attaques a ét�
 
 #### Prérequis 
 
-Certains logiciels sont nécessaires :  **Node.js**, **node-gyp** et **build-essential**
+Certains logiciels sont nécessaires :  **Node.js**, **node-gyp**, **build-essential** et **rapidjson-dev**
 
 Pour installer **Node.js** : https://nodejs.org/en/download/
 
-Installer **node-gyp**  de manière globale : **npm install node-gyp -g**
+Installer **node-gyp**  de manière globale : **sudo npm install node-gyp -g**
 
-Pour installer l'environnement de développement : **apt install build-essential rapidjson-dev** (pour une distribution basée sur Debian)
+Installer l'environnement de développement : **sudo apt install build-essential rapidjson-dev** (pour une distribution basée sur Debian)
 
 #### Préparation du logiciel
 
