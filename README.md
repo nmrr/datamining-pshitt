@@ -25,7 +25,7 @@ Pour installer **Node.js** : https://nodejs.org/en/download/
 
 Installer **node-gyp**  de manière globale : **npm install node-gyp -g**
 
-Pour installer l'environnement de développement : **apt install build-essential** (pour une distribution basée sur Debian)
+Pour installer l'environnement de développement : **apt install build-essential rapidjson-dev** (pour une distribution basée sur Debian)
 
 #### Préparation du logiciel
 
