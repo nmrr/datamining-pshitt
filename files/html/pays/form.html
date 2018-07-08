@@ -30,29 +30,34 @@ h1 {text-align:center;}
 </div>
 
 <div class="form-group">
-<label for="start" id="debuttxt">Date de début</label> 
+<label for="start" id="debuttxt">Date de début</label>
   <input type="date" class="form-control" name="debut" id="start" disabled onChange="changementDate();">
 </div>
 
 <div class="form-group">
-<label for="end" id="fintxt">Date de fin</label> 
+<label for="end" id="fintxt">Date de fin</label>
   <input type="date" class="form-control" name="fin" id="end" disabled onChange="changementDate();">
 </div>
 
 <div class="form-group">
-<label for="pays">Pays</label> 
+<label for="pays">Pays</label>
   <select multiple name="" class="form-control" id="pays" disabled size=20>
   </select>
 </div>
 
 <div class="checkbox">
-  <label for="paysappbox">Tous les pays</label> 
+  <label for="paysappbox">Tous les pays</label>
   <input type="checkbox" id="paysappbox" value="1">
 </div>
 
 <div class="form-group">
   <label for="isolate">Supprimer les noeuds isolés</label>
   <input type="checkbox" name="isolate" id="isolate" value="1">
+</div>
+
+<div class="form-group">
+  <label for="ip">Afficher les IP</label>
+  <input type="checkbox" name="ip" id="ip" value="1">
 </div>
 
 <div class="form-group">
@@ -87,11 +92,11 @@ function validateForm() {
       alert("pas de pays pour l'apprentissage")
       return false;
     }
-    else document.getElementById("listepays").value = listeArg; 
+    else document.getElementById("listepays").value = listeArg;
   }
   else
   {
-    document.getElementById("listepays").value = "false"; 
+    document.getElementById("listepays").value = "false";
   }
 
   return true;
@@ -100,22 +105,22 @@ function validateForm() {
 function changementDate()
 {
   var xhttpPays = new XMLHttpRequest();
-  xhttpPays.onreadystatechange = function() 
+  xhttpPays.onreadystatechange = function()
   {
-    if (this.readyState == 4) 
+    if (this.readyState == 4)
     {
       if (this.status >= 100)
       {
         if (this.status == 200)
         {
-          try 
+          try
           {
               paysJson = JSON.parse(this.responseText);
           }
-          catch (e) 
+          catch (e)
           {
             paysJson = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
           }
 
           if (paysJson !== undefined)
@@ -145,7 +150,7 @@ function changementDate()
 
           document.getElementById("fintxt").style.color = "#ff0000";
           document.getElementById("end").style = "border-color: #ff0000;";
-        } 
+        }
       }
     }
   };
@@ -157,22 +162,22 @@ function changementDate()
 var paysJson = undefined;
 
 var xhttpPays = new XMLHttpRequest();
-xhttpPays.onreadystatechange = function() 
+xhttpPays.onreadystatechange = function()
 {
-  if (this.readyState == 4) 
+  if (this.readyState == 4)
   {
     if (this.status >= 100)
     {
       if (this.status == 200)
       {
-        try 
+        try
         {
             paysJson = JSON.parse(this.responseText);
         }
-        catch (e) 
+        catch (e)
         {
           paysJson = undefined;
-          alert("Parsing error:", e); 
+          alert("Parsing error:", e);
         }
 
         if (paysJson !== undefined)
@@ -192,28 +197,28 @@ xhttpPays.onreadystatechange = function()
       else
       {
         alert("status : " + this.status + ", " + this.responseText);
-      } 
+      }
     }
   }
 };
 
 var xhttpDate = new XMLHttpRequest();
-xhttpDate.onreadystatechange = function() 
+xhttpDate.onreadystatechange = function()
 {
-  if (this.readyState == 4) 
+  if (this.readyState == 4)
   {
     if (this.status >= 100)
     {
       if (this.status == 200)
       {
-        try 
+        try
         {
             limits = JSON.parse(this.responseText);
         }
-        catch (e) 
+        catch (e)
         {
           limits = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
         }
 
         if (limits !== undefined)
@@ -291,7 +296,7 @@ xhttpDate.onreadystatechange = function()
       else
       {
         alert("status : " + this.status + ", " + this.responseText);
-      } 
+      }
     }
   }
 };

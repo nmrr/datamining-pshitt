@@ -120,22 +120,22 @@
 	}
 
   var xhttpPays = new XMLHttpRequest();
-  xhttpPays.onreadystatechange = function() 
+  xhttpPays.onreadystatechange = function()
   {
-    if (this.readyState == 4) 
+    if (this.readyState == 4)
     {
       if (this.status >= 100)
       {
         if (this.status == 200)
         {
-          try 
+          try
           {
               paysJson = JSON.parse(this.responseText);
           }
-          catch (e) 
+          catch (e)
           {
             paysJson = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
           }
 
           if (paysJson !== undefined)
@@ -166,7 +166,7 @@
             });
             s.refresh();
 
-            document.getElementById("gravity").onclick = function() 
+            document.getElementById("gravity").onclick = function()
             {
               if (gravity === false)
               {
@@ -180,17 +180,17 @@
               }
             }
 
-            document.getElementById("startstop").onclick = function() 
+            document.getElementById("startstop").onclick = function()
             {
               if (spatialisation === false)
               {
                 if (gravity === false)
                 {
-                  s.startForceAtlas2({worker: true, barnesHutOptimize: true, iterationsPerRender:5, outboundAttractionDistribution:false,startingIterations:5, scalingRatio:50, gravity:10});
+                  s.startForceAtlas2({worker: true, barnesHutOptimize: true, iterationsPerRender:1, outboundAttractionDistribution:false,startingIterations:5, scalingRatio:50, gravity:10});
                 }
                 else
                 {
-                  s.startForceAtlas2({worker: true, barnesHutOptimize: true, iterationsPerRender:5, outboundAttractionDistribution:true,startingIterations:5, strongGravityMode:true});
+                  s.startForceAtlas2({worker: true, barnesHutOptimize: true, iterationsPerRender:1, outboundAttractionDistribution:true,startingIterations:5, strongGravityMode:true});
                 }
                 document.getElementById("startstop").firstChild.data = "STOP";
                 spatialisation = true;
@@ -203,7 +203,7 @@
               }
             }
 
-            document.getElementById("save").onclick = function() 
+            document.getElementById("save").onclick = function()
             {
               s.toSVG({labels: true,classes: false,data: true,download: true,filename: 'output.svg'});
             }
@@ -214,7 +214,7 @@
         else
         {
           alert("status : " + this.status + ", " + this.responseText);
-        } 
+        }
       }
     }
   };
@@ -228,4 +228,3 @@
 </script>
 </body>
 </html>
-
