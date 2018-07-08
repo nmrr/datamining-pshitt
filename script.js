@@ -86,14 +86,14 @@ app.use('/static', express.static('files'));
 // Pour obtenir les limites temporelles des logs
 app.get('/info/dateslimites.json', function (req, res) {
 
-    addonNodejs.date(function (resultat) 
+    addonNodejs.date(function (resultat)
     {
         res.writeHead(200, {
           'Content-Type': 'application/json',
           'Content-Length': resultat.length
         });
         res.end(resultat);
-    }); 
+    });
 });
 
 // Pour avoir la liste des pays qui ont attaqué entre 2 dates
@@ -213,7 +213,7 @@ app.get('/info/pays.json', function (req, res) {
     }
 
     // Lancement de la méthode de l'addon
-    addonNodejs.pays(yearstart, monthstart, daystart, yearend, monthend, dayend, suivant, function (resultat, err) 
+    addonNodejs.pays(yearstart, monthstart, daystart, yearend, monthend, dayend, suivant, function (resultat, err)
     {
         // Lecture des résultats
         if (err !== null)
@@ -244,7 +244,7 @@ app.get('/info/pays.json', function (req, res) {
             });
             res.end(resultat);
         }
-    }); 
+    });
 });
 
 // Redirection de l'utilisateur vers la visualisation choisie (visualisation générale)
@@ -292,7 +292,7 @@ app.get('/form/visualisation2.html', function (req, res) {
     {
         res.redirect('/static/html/visualisation2/carte.html' + args);
     }
-    else 
+    else
     {
         res.redirect('/static/html/visualisation2/tableau.html' + args);
     }
@@ -407,7 +407,7 @@ app.get('/generator/linear.csv', function (req, res) {
         }
     }
 
-    addonNodejs.linear(yearstart, monthstart, daystart, yearend, monthend, dayend, function (resultat, err, emptyData) 
+    addonNodejs.linear(yearstart, monthstart, daystart, yearend, monthend, dayend, function (resultat, err, emptyData)
     {
         if (err !== null)
         {
@@ -436,7 +436,7 @@ app.get('/generator/linear.csv', function (req, res) {
         {
             res.status(404).send("empty data");
         }
-    }); 
+    });
 });
 
 // Pour le graphe des attaques dans le temps (visualisation spécifique aux username, password)
@@ -567,7 +567,7 @@ app.get('/generator/linear2.csv', function (req, res) {
 
     if (data !== -1)
     {
-        addonNodejs.linear2(yearstart, monthstart, daystart, yearend, monthend, dayend, data, username, password, function (resultat, err, emptyData) 
+        addonNodejs.linear2(yearstart, monthstart, daystart, yearend, monthend, dayend, data, username, password, function (resultat, err, emptyData)
         {
             if (err !== null)
             {
@@ -604,7 +604,7 @@ app.get('/generator/linear2.csv', function (req, res) {
             {
                 res.status(404).send("empty data");
             }
-        }); 
+        });
     }
     else
     {
@@ -618,6 +618,7 @@ app.get('/generator/pays.json', function (req, res) {
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
     var data = 0;
     var isolate = 0;
+    var ip = 0
 
     if (req.query.data !== undefined)
     {
@@ -628,16 +629,21 @@ app.get('/generator/pays.json', function (req, res) {
         else if (req.query.data === "password")
         {
             data = 1;
-        } 
+        }
         else if (req.query.data === "usernamepassword")
         {
             data = 2;
-        } 
+        }
     }
 
     if (req.query.isolate !== undefined)
     {
         if (req.query.isolate === "1") isolate = 1;
+    }
+
+    if (req.query.ip !== undefined)
+    {
+        if (req.query.ip === "1") ip = 1;
     }
 
     if (req.query.debut !== undefined)
@@ -744,7 +750,7 @@ app.get('/generator/pays.json', function (req, res) {
 
     if (req.query.listepays !== undefined)
     {
-        addonNodejs.paysGraphe(yearstart, monthstart, daystart, yearend, monthend, dayend, String(req.query.listepays), data, isolate, function (resultat, err, emptyData) 
+        addonNodejs.paysGraphe(yearstart, monthstart, daystart, yearend, monthend, dayend, String(req.query.listepays), data, isolate, ip, function (resultat, err, emptyData)
         {
             if (err !== null)
             {
@@ -773,7 +779,7 @@ app.get('/generator/pays.json', function (req, res) {
             {
                 res.status(404).send("empty data");
             }
-        }); 
+        });
     }
     else
     {
@@ -814,11 +820,11 @@ app.get('/generator/anomalie.json', function (req, res) {
     else if (req.query.data === "password")
     {
         data = 1;
-    } 
+    }
     else if (req.query.data === "usernamepassword")
     {
         data = 2;
-    } 
+    }
 
     if (req.query.debutapp !== undefined)
     {
@@ -975,7 +981,7 @@ app.get('/generator/anomalie.json', function (req, res) {
 
     if (req.query.listepaysapp !== undefined && req.query.listepays !== undefined)
     {
-        addonNodejs.anomalieGraphe(yearstartapp, monthstartapp, daystartapp, yearendapp, monthendapp, dayendapp, yearend, monthend, dayend, String(req.query.listepaysapp), String(req.query.listepays), data, seuilapp, seuil, function (resultat, err, emptyData) 
+        addonNodejs.anomalieGraphe(yearstartapp, monthstartapp, daystartapp, yearendapp, monthendapp, dayendapp, yearend, monthend, dayend, String(req.query.listepaysapp), String(req.query.listepays), data, seuilapp, seuil, function (resultat, err, emptyData)
         {
             if (err !== null)
             {
@@ -1028,7 +1034,7 @@ app.get('/generator/anomalie.json', function (req, res) {
             {
                 res.status(404).send("empty data");
             }
-        }); 
+        });
     }
     else
     {
@@ -1038,7 +1044,7 @@ app.get('/generator/anomalie.json', function (req, res) {
 
 // Graphe des relations username/password (visualisation générale)
 app.get('/generator/usernamepassword.json', function (req, res) {
-    
+
 
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
     var limite = 0;
@@ -1153,7 +1159,7 @@ app.get('/generator/usernamepassword.json', function (req, res) {
         }
     }
 
-    addonNodejs.visualisationUsernamePasswordCercle(yearstart, monthstart, daystart, yearend, monthend, dayend, limite, function (resultat, err, emptyData) 
+    addonNodejs.visualisationUsernamePasswordCercle(yearstart, monthstart, daystart, yearend, monthend, dayend, limite, function (resultat, err, emptyData)
     {
         if (err !== null)
         {
@@ -1182,12 +1188,12 @@ app.get('/generator/usernamepassword.json', function (req, res) {
         {
             res.status(404).send("empty data");
         }
-    }); 
+    });
 });
 
 // Génération de la carte (visualisation générale)
 app.get('/generator/carte.csv', function (req, res) {
-    
+
 
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
     var limite = 0;
@@ -1302,7 +1308,7 @@ app.get('/generator/carte.csv', function (req, res) {
         }
     }
 
-    addonNodejs.visualisationCarte(yearstart, monthstart, daystart, yearend, monthend, dayend, limite, function (resultat, err, emptyData) 
+    addonNodejs.visualisationCarte(yearstart, monthstart, daystart, yearend, monthend, dayend, limite, function (resultat, err, emptyData)
     {
         if (err !== null)
         {
@@ -1331,12 +1337,12 @@ app.get('/generator/carte.csv', function (req, res) {
         {
             res.status(404).send("empty data");
         }
-    }); 
+    });
 });
 
 // Visualisation des données générale, cercles oranges et liste
 app.get('/generator/visualisation.json', function (req, res) {
-    
+
 
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
     var limite = 0, data = -1;
@@ -1474,7 +1480,7 @@ app.get('/generator/visualisation.json', function (req, res) {
         // http://127.0.0.1:8888/country.json?yearstart=2016&monthstart=1&daystart=1&yearend=2016&monthend=2&dayend=1
         // http://127.0.0.1:8888/static/index.html?yearstart=2016&monthstart=1&daystart=1&yearend=2016&monthend=2&dayend=1
 
-        addonNodejs.visualisation(yearstart, monthstart, daystart, yearend, monthend, dayend, limite, data, function (resultat, err, emptyData) 
+        addonNodejs.visualisation(yearstart, monthstart, daystart, yearend, monthend, dayend, limite, data, function (resultat, err, emptyData)
         {
             if (err !== null)
             {
@@ -1503,7 +1509,7 @@ app.get('/generator/visualisation.json', function (req, res) {
             {
                 res.status(404).send("empty data");
             }
-        }); 
+        });
     }
     else
     {
@@ -1513,7 +1519,7 @@ app.get('/generator/visualisation.json', function (req, res) {
 
 // Visualisation spécifique aux username et password, cerlces oranges et liste
 app.get('/generator/visualisation2.json', function (req, res) {
-    
+
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
     var username = "", password = "";
     var data = -1;
@@ -1639,7 +1645,7 @@ app.get('/generator/visualisation2.json', function (req, res) {
 
     if (data !== -1)
     {
-        addonNodejs.visualisation2(yearstart, monthstart, daystart, yearend, monthend, dayend, data, username, password, function (resultat, err, emptyData) 
+        addonNodejs.visualisation2(yearstart, monthstart, daystart, yearend, monthend, dayend, data, username, password, function (resultat, err, emptyData)
         {
             if (err !== null)
             {
@@ -1676,7 +1682,7 @@ app.get('/generator/visualisation2.json', function (req, res) {
             {
                 res.status(404).send("empty data");
             }
-        }); 
+        });
     }
     else
     {
@@ -1686,7 +1692,7 @@ app.get('/generator/visualisation2.json', function (req, res) {
 
 // Carte de la visualisation des username / password
 app.get('/generator/carte2.csv', function (req, res) {
-    
+
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
     var username = "", password = "";
     var data = -1;
@@ -1812,7 +1818,7 @@ app.get('/generator/carte2.csv', function (req, res) {
 
     if (data !== -1)
     {
-        addonNodejs.visualisation2Carte(yearstart, monthstart, daystart, yearend, monthend, dayend, data, username, password, function (resultat, err, emptyData) 
+        addonNodejs.visualisation2Carte(yearstart, monthstart, daystart, yearend, monthend, dayend, data, username, password, function (resultat, err, emptyData)
         {
             if (err !== null)
             {
@@ -1849,7 +1855,7 @@ app.get('/generator/carte2.csv', function (req, res) {
             {
                 res.status(404).send("empty data");
             }
-        }); 
+        });
     }
     else
     {
