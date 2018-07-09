@@ -505,7 +505,7 @@ private:
 
 public:
 
-    visualisationAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, uint32_t limit, int data) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), limit(limit), data(data){}
+    visualisationAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, uint32_t limit, int data) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), limit(limit), data(data) {}
     ~visualisationAsync()
     {
         mtx.unlock();
@@ -539,7 +539,7 @@ public:
                 bool lireDonnees = false;
                 bool dateAtteinteBool = false;
 
-                for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                 {
                     if (lireDonnees == false)
                     {
@@ -644,7 +644,7 @@ public:
                 bool lireDonnees = false;
                 bool dateAtteinteBool = false;
 
-                for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                 {
                     if (lireDonnees == false)
                     {
@@ -760,7 +760,7 @@ public:
                 bool lireDonnees = false;
                 bool dateAtteinteBool = false;
 
-                for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                 {
                     if (lireDonnees == false)
                     {
@@ -876,7 +876,7 @@ public:
                 bool lireDonnees = false;
                 bool dateAtteinteBool = false;
 
-                for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                 {
                     if (lireDonnees == false)
                     {
@@ -986,7 +986,7 @@ public:
 
                 rapidjson::Value recipients3(rapidjson::kArrayType);
 
-                for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                 {
                     if (lireDonnees == false)
                     {
@@ -1062,7 +1062,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -1101,7 +1101,7 @@ private:
 
 public:
 
-    linearAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2){}
+    linearAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2) {}
     ~linearAsync()
     {
         mtx.unlock();
@@ -1130,7 +1130,7 @@ public:
             bool compter = false;
             bool dateAtteinteBool = false;
 
-            for (uint32_t i=0;i<vectorDatePosition.size();i++)
+            for (uint32_t i=0; i<vectorDatePosition.size(); i++)
             {
                 if (compter == false)
                 {
@@ -1177,7 +1177,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -1218,7 +1218,7 @@ private:
 
 public:
 
-    linear2Async(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int data, string username, string password) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), data(data), username(username), password(password){}
+    linear2Async(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int data, string username, string password) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), data(data), username(username), password(password) {}
     ~linear2Async()
     {
         mtx.unlock();
@@ -1295,7 +1295,7 @@ public:
             bool dateAtteinteBool = false;
             bool lireDonnees = false;
 
-            for (uint32_t i=0;i<vectorDatePosition.size();i++)
+            for (uint32_t i=0; i<vectorDatePosition.size(); i++)
             {
                 if (lireDonnees == false)
                 {
@@ -1367,7 +1367,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -1408,7 +1408,7 @@ private:
 
 public:
 
-    visualisation2Async(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int data, string username, string password) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), data(data), username(username), password(password){}
+    visualisation2Async(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int data, string username, string password) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), data(data), username(username), password(password) {}
     ~visualisation2Async()
     {
         mtx.unlock();
@@ -1487,7 +1487,7 @@ public:
             vector<pair<uint16_t, uint32_t>> vectorPaysAttaque;
             map<uint16_t,uint32_t> mapPaysAttaque;
 
-            for (uint32_t i=0;i<vectorDatePosition.size();i++)
+            for (uint32_t i=0; i<vectorDatePosition.size(); i++)
             {
                 if (lireDonnees == false)
                 {
@@ -1624,7 +1624,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -1659,7 +1659,7 @@ private:
 
 public:
 
-    dateAsync(Callback *callback) : AsyncWorker(callback){}
+    dateAsync(Callback *callback) : AsyncWorker(callback) {}
     ~dateAsync()
     {
         mtx.unlock();
@@ -1696,7 +1696,7 @@ public:
         Nan::HandleScope scope;
 
         char * bufferChar = new char[outputString.length()];
-        for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+        for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
         Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -1721,7 +1721,7 @@ private:
 
 public:
 
-    paysAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, bool suivant) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), suivant(suivant){}
+    paysAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, bool suivant) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), suivant(suivant) {}
     ~paysAsync()
     {
         mtx.unlock();
@@ -1756,7 +1756,7 @@ public:
 
             map<uint16_t,uint32_t> mapPaysAttaque;
 
-            for (uint32_t i=0;i<vectorDatePosition.size();i++)
+            for (uint32_t i=0; i<vectorDatePosition.size(); i++)
             {
                 if (lireDonnees == false)
                 {
@@ -1851,7 +1851,7 @@ public:
         if (error == 0)
         {
             char * bufferChar = new char[outputString.length()];
-            for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+            for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
             Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -1900,32 +1900,32 @@ private:
 
         switch (color & 0b111)
         {
-            case 0:
-              colorString = "#00FF00";
-              break;
-            case 1:
-              colorString = "#0000FF";
-              break;
-            case 2:
-              colorString = "#FF00FF";
-              break;
-            case 3:
-              colorString = "#00FFFF";
-              break;
-            case 4:
-              colorString = "#FF8400";
-              break;
-            case 5:
-              colorString = "#228632";
-              break;
-            case 6:
-              colorString = "#4DFFFA";
-              break;
-            case 7:
-              colorString = "#6300C0";
-              break;
-            default:
-                colorString = "#ABABAB";
+        case 0:
+            colorString = "#00FF00";
+            break;
+        case 1:
+            colorString = "#0000FF";
+            break;
+        case 2:
+            colorString = "#FF00FF";
+            break;
+        case 3:
+            colorString = "#00FFFF";
+            break;
+        case 4:
+            colorString = "#FF8400";
+            break;
+        case 5:
+            colorString = "#228632";
+            break;
+        case 6:
+            colorString = "#4DFFFA";
+            break;
+        case 7:
+            colorString = "#6300C0";
+            break;
+        default:
+            colorString = "#ABABAB";
         }
 
         return colorString;
@@ -1933,7 +1933,7 @@ private:
 
 public:
 
-    anomalieAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int year3, int month3, int day3, string listepaysapp, string listepays, int data, uint32_t seuilApp, uint32_t seuilAnomalie) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), year3(year3), month3(month3), day3(day3), listepaysapp(listepaysapp), listepays(listepays), data(data), seuilApp(seuilApp), seuilAnomalie(seuilAnomalie){}
+    anomalieAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int year3, int month3, int day3, string listepaysapp, string listepays, int data, uint32_t seuilApp, uint32_t seuilAnomalie) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), year3(year3), month3(month3), day3(day3), listepaysapp(listepaysapp), listepays(listepays), data(data), seuilApp(seuilApp), seuilAnomalie(seuilAnomalie) {}
     ~anomalieAsync()
     {
         mtx.unlock();
@@ -1981,7 +1981,7 @@ public:
             if (tousPaysApp == false)
             {
                 string recuperation = "";
-                for (uint32_t i=0;i<listepaysapp.length();i++)
+                for (uint32_t i=0; i<listepaysapp.length(); i++)
                 {
                     bool verifier = false;
 
@@ -2042,7 +2042,7 @@ public:
             if (tousPays == false)
             {
                 string recuperation = "";
-                for (uint32_t i=0;i<listepays.length();i++)
+                for (uint32_t i=0; i<listepays.length(); i++)
                 {
                     bool verifier = false;
 
@@ -2107,7 +2107,7 @@ public:
                     bool dateAtteinteBool = false;
                     uint32_t positionVectorDatePosition = 0;
 
-                    for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                    for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                     {
                         if (lireDonnees == false)
                         {
@@ -2194,7 +2194,7 @@ public:
 
                         //cout << "seuilApp : " << seuilApp << endl;
 
-                        for (uint32_t i=0;i<vectorDataApp.size();i++)
+                        for (uint32_t i=0; i<vectorDataApp.size(); i++)
                         {
                             uint32_t position = vectorDataApp.size() - 1 - i;
                             if(vectorDataApp[position].second >= seuilApp)
@@ -2216,7 +2216,7 @@ public:
                         map<uint32_t, pair<uint32_t, map<uint16_t, uint32_t>>> mapDataAnomalie;
                         dateAtteinteBool = false;
 
-                        for (uint32_t i=positionVectorDatePosition;i<vectorDatePosition.size();i++)
+                        for (uint32_t i=positionVectorDatePosition; i<vectorDatePosition.size(); i++)
                         {
                             if (dateAtteinteBool == true)
                             {
@@ -2280,7 +2280,7 @@ public:
                                                 }
                                                 else
                                                 {
-                                                   itPaysAnomalie->second++;
+                                                    itPaysAnomalie->second++;
                                                 }
 
                                             }
@@ -2331,7 +2331,7 @@ public:
                                             }
                                             else
                                             {
-                                               itPaysAnomalie->second++;
+                                                itPaysAnomalie->second++;
                                             }
 
                                         }
@@ -2470,7 +2470,7 @@ public:
                     bool dateAtteinteBool = false;
                     uint32_t positionVectorDatePosition = 0;
 
-                    for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                    for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                     {
                         if (lireDonnees == false)
                         {
@@ -2557,7 +2557,7 @@ public:
 
                         //cout << "seuilApp : " << seuilApp << endl;
 
-                        for (uint32_t i=0;i<vectorDataApp.size();i++)
+                        for (uint32_t i=0; i<vectorDataApp.size(); i++)
                         {
                             uint32_t position = vectorDataApp.size() - 1 - i;
                             if(vectorDataApp[position].second >= seuilApp)
@@ -2579,7 +2579,7 @@ public:
                         map<pair<uint32_t, uint32_t>, pair<uint32_t, map<uint16_t, uint32_t>>> mapDataAnomalie;
                         dateAtteinteBool = false;
 
-                        for (uint32_t i=positionVectorDatePosition;i<vectorDatePosition.size();i++)
+                        for (uint32_t i=positionVectorDatePosition; i<vectorDatePosition.size(); i++)
                         {
                             if (dateAtteinteBool == true)
                             {
@@ -2643,7 +2643,7 @@ public:
                                                 }
                                                 else
                                                 {
-                                                   itPaysAnomalie->second++;
+                                                    itPaysAnomalie->second++;
                                                 }
                                             }
                                         }
@@ -2693,7 +2693,7 @@ public:
                                             }
                                             else
                                             {
-                                               itPaysAnomalie->second++;
+                                                itPaysAnomalie->second++;
                                             }
 
                                         }
@@ -2840,7 +2840,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -2903,32 +2903,32 @@ private:
 
         switch (color & 0b111)
         {
-            case 0:
-              colorString = "#00FF00";
-              break;
-            case 1:
-              colorString = "#0000FF";
-              break;
-            case 2:
-              colorString = "#FF00FF";
-              break;
-            case 3:
-              colorString = "#00FFFF";
-              break;
-            case 4:
-              colorString = "#FF8400";
-              break;
-            case 5:
-              colorString = "#228632";
-              break;
-            case 6:
-              colorString = "#4DFFFA";
-              break;
-            case 7:
-              colorString = "#6300C0";
-              break;
-            default:
-                colorString = "#ABABAB";
+        case 0:
+            colorString = "#00FF00";
+            break;
+        case 1:
+            colorString = "#0000FF";
+            break;
+        case 2:
+            colorString = "#FF00FF";
+            break;
+        case 3:
+            colorString = "#00FFFF";
+            break;
+        case 4:
+            colorString = "#FF8400";
+            break;
+        case 5:
+            colorString = "#228632";
+            break;
+        case 6:
+            colorString = "#4DFFFA";
+            break;
+        case 7:
+            colorString = "#6300C0";
+            break;
+        default:
+            colorString = "#ABABAB";
         }
 
         return colorString;
@@ -2936,7 +2936,7 @@ private:
 
 public:
 
-    paysGrapheAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, string listepays, int data, int isolate, int ip) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), listepays(listepays), data(data), isolate(isolate), ip(ip){}
+    paysGrapheAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, string listepays, int data, int isolate, int ip) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), listepays(listepays), data(data), isolate(isolate), ip(ip) {}
     ~paysGrapheAsync()
     {
         mtx.unlock();
@@ -2980,7 +2980,7 @@ public:
             {
                 // 105-1-23-56-113-39
                 string recuperation = "";
-                for (uint32_t i=0;i<listepays.length();i++)
+                for (uint32_t i=0; i<listepays.length(); i++)
                 {
                     bool verifier = false;
 
@@ -3029,7 +3029,7 @@ public:
 
                                     if (ip == 0)
                                     {
-                                      tmp.id = compteurNodeID++;
+                                        tmp.id = compteurNodeID++;
                                     }
 
                                     tmp.color = mapPaysArgs.size();
@@ -3052,7 +3052,7 @@ public:
                     bool lireDonnees = false;
                     bool dateAtteinteBool = false;
 
-                    for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                    for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                     {
                         if (lireDonnees == false)
                         {
@@ -3096,7 +3096,7 @@ public:
 
                                             if (ip == 0)
                                             {
-                                              tmp.id = compteurNodeID++;
+                                                tmp.id = compteurNodeID++;
                                             }
 
                                             tmp.color = mapPaysArgs.size();
@@ -3111,18 +3111,18 @@ public:
                                     map<uint32_t,paysGraphe>::iterator itIP;
                                     if (ip == 1)
                                     {
-                                      itIP = mapIP.find(vectorLogSSH[j].sourceIP);
-                                      if (itIP == mapIP.end())
-                                      {
-                                        paysGraphe tmp;
-                                        tmp.id = compteurNodeID++;
-                                        tmp.color = itCountry->second.color;
-
-                                        mapIP[vectorLogSSH[j].sourceIP] = tmp;
                                         itIP = mapIP.find(vectorLogSSH[j].sourceIP);
+                                        if (itIP == mapIP.end())
+                                        {
+                                            paysGraphe tmp;
+                                            tmp.id = compteurNodeID++;
+                                            tmp.color = itCountry->second.color;
 
-                                        //cout << "Ajout IP : " << "color : " << itCountry->second.color << ", " << ipInformation.intToStringIP(vectorLogSSH[j].sourceIP) << ", " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
-                                      }
+                                            mapIP[vectorLogSSH[j].sourceIP] = tmp;
+                                            itIP = mapIP.find(vectorLogSSH[j].sourceIP);
+
+                                            //cout << "Ajout IP : " << "color : " << itCountry->second.color << ", " << ipInformation.intToStringIP(vectorLogSSH[j].sourceIP) << ", " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
+                                        }
                                     }
 
                                     //cout << j << " " << vectorLogSSH[j].sourceIP << " " << vectorUsername[vectorLogSSH[j].username] << " " << vectorPassword[vectorLogSSH[j].password] << endl;
@@ -3137,13 +3137,13 @@ public:
 
                                         if (ip == 0)
                                         {
-                                          tmpNode.paysNoeudID = itCountry->second.id;
-                                          tmpNode.paysNoeud = itCountry->first;
+                                            tmpNode.paysNoeudID = itCountry->second.id;
+                                            tmpNode.paysNoeud = itCountry->first;
                                         }
                                         else
                                         {
-                                          tmpNode.paysNoeudID = itIP->second.id;
-                                          tmpNode.paysNoeud = itIP->first;
+                                            tmpNode.paysNoeudID = itIP->second.id;
+                                            tmpNode.paysNoeud = itIP->first;
                                         }
 
                                         structEdge tmpEdge;
@@ -3163,13 +3163,13 @@ public:
 
                                         if (ip == 0)
                                         {
-                                          itCountry->second.compteur++;
-                                          itCountry->second.compteurEdge++;
+                                            itCountry->second.compteur++;
+                                            itCountry->second.compteurEdge++;
                                         }
                                         else
                                         {
-                                          itIP->second.compteur++;
-                                          itIP->second.compteurEdge++;
+                                            itIP->second.compteur++;
+                                            itIP->second.compteurEdge++;
                                         }
                                     }
                                     else
@@ -3213,42 +3213,42 @@ public:
 
                     if (ip == 0)
                     {
-                      for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
-                      {
-                          //if (vectorNode[i].size > maximum) maximum = vectorNode[i].size;
-                          if (it->second.compteur > paysMaximum) paysMaximum = it->second.compteur;
-                      }
+                        for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+                        {
+                            //if (vectorNode[i].size > maximum) maximum = vectorNode[i].size;
+                            if (it->second.compteur > paysMaximum) paysMaximum = it->second.compteur;
+                        }
                     }
                     else
                     {
-                      for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
-                      {
-                          //if (vectorNode[i].size > maximum) maximum = vectorNode[i].size;
-                          if (it->second.compteur > paysMaximum) paysMaximum = it->second.compteur;
-                      }
+                        for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
+                        {
+                            //if (vectorNode[i].size > maximum) maximum = vectorNode[i].size;
+                            if (it->second.compteur > paysMaximum) paysMaximum = it->second.compteur;
+                        }
                     }
 
                     uint32_t paysMinimum = paysMaximum;
 
                     if (ip == 0)
                     {
-                      for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
-                      {
-                          if (it->second.compteur < paysMinimum) paysMinimum = it->second.compteur;
-                      }
+                        for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+                        {
+                            if (it->second.compteur < paysMinimum) paysMinimum = it->second.compteur;
+                        }
                     }
                     else
                     {
-                      for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
-                      {
-                          if (it->second.compteur < paysMinimum) paysMinimum = it->second.compteur;
-                      }
+                        for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
+                        {
+                            if (it->second.compteur < paysMinimum) paysMinimum = it->second.compteur;
+                        }
                     }
 
                     const uint32_t paysNombreCran = 5;
                     double paysArrayCran[paysNombreCran-1];
                     double paysCran = double(paysMaximum - paysMinimum)/double(paysNombreCran);
-                    for (uint32_t i=0;i<paysNombreCran-1;i++)
+                    for (uint32_t i=0; i<paysNombreCran-1; i++)
                     {
                         paysArrayCran[i] = double(paysMinimum)+double(paysCran*double(i+1));
                     }
@@ -3272,7 +3272,7 @@ public:
                     const uint32_t nodeNombreCran = 5;
                     double nodeArrayCran[nodeNombreCran-1];
                     double nodeCran = double(nodeMaximum - nodeMinimum)/double(nodeNombreCran);
-                    for (uint32_t i=0;i<nodeNombreCran-1;i++)
+                    for (uint32_t i=0; i<nodeNombreCran-1; i++)
                     {
                         nodeArrayCran[i] = double(nodeMinimum)+double(nodeCran*double(i+1));
                     }
@@ -3293,37 +3293,37 @@ public:
 
                                 if (ip == 0)
                                 {
-                                  // Décrémentation du compteur du pays
-                                  map<uint16_t,paysGraphe>::iterator itCountry = mapPaysArgs.find(it->second.paysNoeud);
-                                  if (itCountry != mapPaysArgs.end())
-                                  {
-                                      //cout << "compteurEdge : " << itCountry->second.compteurEdge << ", " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
+                                    // Décrémentation du compteur du pays
+                                    map<uint16_t,paysGraphe>::iterator itCountry = mapPaysArgs.find(it->second.paysNoeud);
+                                    if (itCountry != mapPaysArgs.end())
+                                    {
+                                        //cout << "compteurEdge : " << itCountry->second.compteurEdge << ", " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
 
-                                      itCountry->second.compteurEdge--;
-                                      if (itCountry->second.compteurEdge == 0)
-                                      {
-                                          cout << "pays isolé : " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
+                                        itCountry->second.compteurEdge--;
+                                        if (itCountry->second.compteurEdge == 0)
+                                        {
+                                            cout << "pays isolé : " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
 
-                                          // Suppression du pays
-                                          mapPaysArgs.erase(itCountry);
-                                      }
-                                  }
+                                            // Suppression du pays
+                                            mapPaysArgs.erase(itCountry);
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                  // Décrémentation du compteur de l'IP
-                                  map<uint32_t,paysGraphe>::iterator itIP = mapIP.find(it->second.paysNoeud);
-                                  if (itIP != mapIP.end())
-                                  {
-                                      itIP->second.compteurEdge--;
-                                      if (itIP->second.compteurEdge == 0)
-                                      {
-                                          cout << "IP isolée : " << ipInformation.intToStringIP(itIP->first) << endl;
+                                    // Décrémentation du compteur de l'IP
+                                    map<uint32_t,paysGraphe>::iterator itIP = mapIP.find(it->second.paysNoeud);
+                                    if (itIP != mapIP.end())
+                                    {
+                                        itIP->second.compteurEdge--;
+                                        if (itIP->second.compteurEdge == 0)
+                                        {
+                                            cout << "IP isolée : " << ipInformation.intToStringIP(itIP->first) << endl;
 
-                                          // Suppression de l'IP
-                                          mapIP.erase(itIP);
-                                      }
-                                  }
+                                            // Suppression de l'IP
+                                            mapIP.erase(itIP);
+                                        }
+                                    }
                                 }
 
                                 // Supprimer le noeud
@@ -3349,65 +3349,65 @@ public:
                     // Ajouter les pays
                     if (ip == 0)
                     {
-                      for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
-                      {
-                          rapidjson::Value node(rapidjson::kObjectType);
+                        for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+                        {
+                            rapidjson::Value node(rapidjson::kObjectType);
 
-                          uint32_t tailleNoeud = paysNombreCran*10;
-                          for (uint32_t j=0;j<paysNombreCran-1;j++)
-                          {
-                              if (double(it->second.compteur) <= paysArrayCran[j])
-                              {
-                                  tailleNoeud = (j+1)*10;
-                                  break;
-                              }
-                          }
+                            uint32_t tailleNoeud = paysNombreCran*10;
+                            for (uint32_t j=0; j<paysNombreCran-1; j++)
+                            {
+                                if (double(it->second.compteur) <= paysArrayCran[j])
+                                {
+                                    tailleNoeud = (j+1)*10;
+                                    break;
+                                }
+                            }
 
-                          textPart.SetString(ipInformation.countryCodeToCountryString(it->first).c_str(), allocator);
-                          node.AddMember("id", it->second.id, allocator);
-                          node.AddMember("label", textPart, allocator);
-                          node.AddMember("x", dist(rd), allocator);
-                          node.AddMember("y", dist(rd), allocator);
+                            textPart.SetString(ipInformation.countryCodeToCountryString(it->first).c_str(), allocator);
+                            node.AddMember("id", it->second.id, allocator);
+                            node.AddMember("label", textPart, allocator);
+                            node.AddMember("x", dist(rd), allocator);
+                            node.AddMember("y", dist(rd), allocator);
 
-                          node.AddMember("size", tailleNoeud, allocator);
-                          textPart.SetString(getColor(it->second.color).c_str(), allocator);
-                          node.AddMember("color", textPart, allocator);
+                            node.AddMember("size", tailleNoeud, allocator);
+                            textPart.SetString(getColor(it->second.color).c_str(), allocator);
+                            node.AddMember("color", textPart, allocator);
 
-                          nodeArray.PushBack(node, allocator);
+                            nodeArray.PushBack(node, allocator);
 
-                          emptyData = false;
-                      }
+                            emptyData = false;
+                        }
                     }
                     else
                     {
-                      for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
-                      {
-                          rapidjson::Value node(rapidjson::kObjectType);
+                        for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
+                        {
+                            rapidjson::Value node(rapidjson::kObjectType);
 
-                          uint32_t tailleNoeud = paysNombreCran*10;
-                          for (uint32_t j=0;j<paysNombreCran-1;j++)
-                          {
-                              if (double(it->second.compteur) <= paysArrayCran[j])
-                              {
-                                  tailleNoeud = (j+1)*10;
-                                  break;
-                              }
-                          }
+                            uint32_t tailleNoeud = paysNombreCran*10;
+                            for (uint32_t j=0; j<paysNombreCran-1; j++)
+                            {
+                                if (double(it->second.compteur) <= paysArrayCran[j])
+                                {
+                                    tailleNoeud = (j+1)*10;
+                                    break;
+                                }
+                            }
 
-                          textPart.SetString(string(ipInformation.intToStringIP(it->first) + " (" + ipInformation.countryCodeToCountryString(ipInformation.getCountryCode(it->first)) + ")").c_str(), allocator);
-                          node.AddMember("id", it->second.id, allocator);
-                          node.AddMember("label", textPart, allocator);
-                          node.AddMember("x", dist(rd), allocator);
-                          node.AddMember("y", dist(rd), allocator);
+                            textPart.SetString(string(ipInformation.intToStringIP(it->first) + " (" + ipInformation.countryCodeToCountryString(ipInformation.getCountryCode(it->first)) + ")").c_str(), allocator);
+                            node.AddMember("id", it->second.id, allocator);
+                            node.AddMember("label", textPart, allocator);
+                            node.AddMember("x", dist(rd), allocator);
+                            node.AddMember("y", dist(rd), allocator);
 
-                          node.AddMember("size", tailleNoeud, allocator);
-                          textPart.SetString(getColor(it->second.color).c_str(), allocator);
-                          node.AddMember("color", textPart, allocator);
+                            node.AddMember("size", tailleNoeud, allocator);
+                            textPart.SetString(getColor(it->second.color).c_str(), allocator);
+                            node.AddMember("color", textPart, allocator);
 
-                          nodeArray.PushBack(node, allocator);
+                            nodeArray.PushBack(node, allocator);
 
-                          emptyData = false;
-                      }
+                            emptyData = false;
+                        }
                     }
 
                     // Ajouter les noeuds
@@ -3416,7 +3416,7 @@ public:
                         rapidjson::Value node(rapidjson::kObjectType);
 
                         uint32_t tailleNoeud = nodeNombreCran*10;
-                        for (uint32_t j=0;j<nodeNombreCran-1;j++)
+                        for (uint32_t j=0; j<nodeNombreCran-1; j++)
                         {
                             if (double(it->second.compteur) <= nodeArrayCran[j])
                             {
@@ -3477,7 +3477,7 @@ public:
                     bool lireDonnees = false;
                     bool dateAtteinteBool = false;
 
-                    for (uint32_t i=0;i<vectorDatePosition.size();i++)
+                    for (uint32_t i=0; i<vectorDatePosition.size(); i++)
                     {
                         if (lireDonnees == false)
                         {
@@ -3518,13 +3518,35 @@ public:
                                         if (itCountry == mapPaysArgs.end())
                                         {
                                             paysGraphe tmp;
-                                            tmp.id = compteurNodeID++;
+
+                                            if (ip == 0)
+                                            {
+                                                tmp.id = compteurNodeID++;
+                                            }
+
                                             tmp.color = mapPaysArgs.size();
 
                                             mapPaysArgs[vectorLogSSH[j].country] = tmp;
                                             itCountry = mapPaysArgs.find(vectorLogSSH[j].country);
 
                                             //cout << "Ajout pays : " << vectorLogSSH[j].country << endl;
+                                        }
+                                    }
+
+                                    map<uint32_t,paysGraphe>::iterator itIP;
+                                    if (ip == 1)
+                                    {
+                                        itIP = mapIP.find(vectorLogSSH[j].sourceIP);
+                                        if (itIP == mapIP.end())
+                                        {
+                                            paysGraphe tmp;
+                                            tmp.id = compteurNodeID++;
+                                            tmp.color = itCountry->second.color;
+
+                                            mapIP[vectorLogSSH[j].sourceIP] = tmp;
+                                            itIP = mapIP.find(vectorLogSSH[j].sourceIP);
+
+                                            //cout << "Ajout IP : " << "color : " << itCountry->second.color << ", " << ipInformation.intToStringIP(vectorLogSSH[j].sourceIP) << ", " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
                                         }
                                     }
 
@@ -3537,15 +3559,26 @@ public:
                                         tmpNode.id = compteurNodeID;
                                         tmpNode.compteur = 1;
                                         tmpNode.compteurEdge = 1;
-                                        tmpNode.paysNoeudID = itCountry->second.id;
-                                        tmpNode.paysNoeud = itCountry->first;
+
+                                        if (ip == 0)
+                                        {
+                                            tmpNode.paysNoeudID = itCountry->second.id;
+                                            tmpNode.paysNoeud = itCountry->first;
+                                        }
+                                        else
+                                        {
+                                            tmpNode.paysNoeudID = itIP->second.id;
+                                            tmpNode.paysNoeud = itIP->first;
+                                        }
 
                                         structEdge tmpEdge;
                                         tmpEdge.id = compteurEdgeID;
                                         tmpEdge.color = itCountry->second.color;
 
                                         mapNode[make_pair(vectorLogSSH[j].username, vectorLogSSH[j].password)] = tmpNode;
-                                        mapEdge[make_pair(itCountry->second.id, compteurNodeID)] = tmpEdge;
+
+                                        if (ip == 0) mapEdge[make_pair(itCountry->second.id, compteurNodeID)] = tmpEdge;
+                                        else mapEdge[make_pair(itIP->second.id, compteurNodeID)] = tmpEdge;
 
                                         //cout << "nouveau Noeud : " << vectorUsername[vectorLogSSH[j].username] << endl;
                                         //cout << "nouveau Lien : " << itCountry->second.id << " -> " << compteurNodeID << endl;
@@ -3553,30 +3586,45 @@ public:
                                         compteurNodeID++;
                                         compteurEdgeID++;
 
-                                        itCountry->second.compteur++;
-                                        itCountry->second.compteurEdge++;
+                                        if (ip == 0)
+                                        {
+                                            itCountry->second.compteur++;
+                                            itCountry->second.compteurEdge++;
+                                        }
+                                        else
+                                        {
+                                            itIP->second.compteur++;
+                                            itIP->second.compteurEdge++;
+                                        }
                                     }
                                     else
                                     {
                                         // Verifier si le lien existe
-                                        map<pair<uint32_t, uint32_t>,structEdge>::iterator itEdge = mapEdge.find(make_pair(itCountry->second.id, itNode->second.id));
+                                        map<pair<uint32_t, uint32_t>,structEdge>::iterator itEdge;
+
+                                        if (ip == 0) itEdge = mapEdge.find(make_pair(itCountry->second.id, itNode->second.id));
+                                        else itEdge = mapEdge.find(make_pair(itIP->second.id, itNode->second.id));
+
                                         if (itEdge == mapEdge.end())
                                         {
                                             structEdge tmpEdge;
                                             tmpEdge.id = compteurEdgeID;
                                             tmpEdge.color = itCountry->second.color;
 
-                                            mapEdge[make_pair(itCountry->second.id, itNode->second.id)] = tmpEdge;
+                                            if (ip == 0) mapEdge[make_pair(itCountry->second.id, itNode->second.id)] = tmpEdge;
+                                            else mapEdge[make_pair(itIP->second.id, itNode->second.id)] = tmpEdge;
 
                                             //cout << "nouveau Lien : " << itCountry->second.id << " -> " << itNode->second.id << endl;
 
                                             compteurEdgeID++;
-                                            itCountry->second.compteurEdge++;
+                                            if (ip == 0) itCountry->second.compteurEdge++;
+                                            else itIP->second.compteurEdge++;
                                             itNode->second.compteurEdge++;
                                         }
 
                                         itNode->second.compteur++;
-                                        itCountry->second.compteur++;
+                                        if (ip == 0) itCountry->second.compteur++;
+                                        else itIP->second.compteur++;
                                     }
                                 }
                             }
@@ -3587,22 +3635,45 @@ public:
 
                     // Determiner la taille min max des noeuds
                     uint32_t paysMaximum = 0;
-                    for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+
+                    if (ip == 0)
                     {
-                        //if (vectorNode[i].size > maximum) maximum = vectorNode[i].size;
-                        if (it->second.compteur > paysMaximum) paysMaximum = it->second.compteur;
+                        for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+                        {
+                            //if (vectorNode[i].size > maximum) maximum = vectorNode[i].size;
+                            if (it->second.compteur > paysMaximum) paysMaximum = it->second.compteur;
+                        }
+                    }
+                    else
+                    {
+                        for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
+                        {
+                            //if (vectorNode[i].size > maximum) maximum = vectorNode[i].size;
+                            if (it->second.compteur > paysMaximum) paysMaximum = it->second.compteur;
+                        }
                     }
 
                     uint32_t paysMinimum = paysMaximum;
-                    for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+
+                    if (ip == 0)
                     {
-                        if (it->second.compteur < paysMinimum) paysMinimum = it->second.compteur;
+                        for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+                        {
+                            if (it->second.compteur < paysMinimum) paysMinimum = it->second.compteur;
+                        }
+                    }
+                    else
+                    {
+                        for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
+                        {
+                            if (it->second.compteur < paysMinimum) paysMinimum = it->second.compteur;
+                        }
                     }
 
                     const uint32_t paysNombreCran = 5;
                     double paysArrayCran[paysNombreCran-1];
                     double paysCran = double(paysMaximum - paysMinimum)/double(paysNombreCran);
-                    for (uint32_t i=0;i<paysNombreCran-1;i++)
+                    for (uint32_t i=0; i<paysNombreCran-1; i++)
                     {
                         paysArrayCran[i] = double(paysMinimum)+double(paysCran*double(i+1));
                     }
@@ -3626,7 +3697,7 @@ public:
                     const uint32_t nodeNombreCran = 5;
                     double nodeArrayCran[nodeNombreCran-1];
                     double nodeCran = double(nodeMaximum - nodeMinimum)/double(nodeNombreCran);
-                    for (uint32_t i=0;i<nodeNombreCran-1;i++)
+                    for (uint32_t i=0; i<nodeNombreCran-1; i++)
                     {
                         nodeArrayCran[i] = double(nodeMinimum)+double(nodeCran*double(i+1));
                     }
@@ -3645,19 +3716,38 @@ public:
                                 // Supprimer le lien
                                 mapEdge.erase(make_pair(it->second.paysNoeudID, it->second.id));
 
-                                // Décrémentation du compteur du pays
-                                map<uint16_t,paysGraphe>::iterator itCountry = mapPaysArgs.find(it->second.paysNoeud);
-                                if (itCountry != mapPaysArgs.end())
+                                if (ip == 0)
                                 {
-                                    //cout << "compteurEdge : " << itCountry->second.compteurEdge << ", " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
-
-                                    itCountry->second.compteurEdge--;
-                                    if (itCountry->second.compteurEdge == 0)
+                                    // Décrémentation du compteur du pays
+                                    map<uint16_t,paysGraphe>::iterator itCountry = mapPaysArgs.find(it->second.paysNoeud);
+                                    if (itCountry != mapPaysArgs.end())
                                     {
-                                        cout << "pays isolé : " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
+                                        //cout << "compteurEdge : " << itCountry->second.compteurEdge << ", " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
 
-                                        // Suppression du pays
-                                        mapPaysArgs.erase(itCountry);
+                                        itCountry->second.compteurEdge--;
+                                        if (itCountry->second.compteurEdge == 0)
+                                        {
+                                            cout << "pays isolé : " << ipInformation.countryCodeToCountryString(itCountry->first) << endl;
+
+                                            // Suppression du pays
+                                            mapPaysArgs.erase(itCountry);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    // Décrémentation du compteur de l'IP
+                                    map<uint32_t,paysGraphe>::iterator itIP = mapIP.find(it->second.paysNoeud);
+                                    if (itIP != mapIP.end())
+                                    {
+                                        itIP->second.compteurEdge--;
+                                        if (itIP->second.compteurEdge == 0)
+                                        {
+                                            cout << "IP isolée : " << ipInformation.intToStringIP(itIP->first) << endl;
+
+                                            // Suppression de l'IP
+                                            mapIP.erase(itIP);
+                                        }
                                     }
                                 }
 
@@ -3682,33 +3772,67 @@ public:
                     rapidjson::Value textPart;
 
                     // Ajouter les pays
-                    for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
+                    if (ip == 0)
                     {
-                        rapidjson::Value node(rapidjson::kObjectType);
-
-                        uint32_t tailleNoeud = paysNombreCran*10;
-                        for (uint32_t j=0;j<paysNombreCran-1;j++)
+                        for (map<uint16_t,paysGraphe>::iterator it = mapPaysArgs.begin(); it != mapPaysArgs.end(); it++)
                         {
-                            if (double(it->second.compteur) <= paysArrayCran[j])
+                            rapidjson::Value node(rapidjson::kObjectType);
+
+                            uint32_t tailleNoeud = paysNombreCran*10;
+                            for (uint32_t j=0; j<paysNombreCran-1; j++)
                             {
-                                tailleNoeud = (j+1)*10;
-                                break;
+                                if (double(it->second.compteur) <= paysArrayCran[j])
+                                {
+                                    tailleNoeud = (j+1)*10;
+                                    break;
+                                }
                             }
+
+                            textPart.SetString(ipInformation.countryCodeToCountryString(it->first).c_str(), allocator);
+                            node.AddMember("id", it->second.id, allocator);
+                            node.AddMember("label", textPart, allocator);
+                            node.AddMember("x", dist(rd), allocator);
+                            node.AddMember("y", dist(rd), allocator);
+
+                            node.AddMember("size", tailleNoeud, allocator);
+                            textPart.SetString(getColor(it->second.color).c_str(), allocator);
+                            node.AddMember("color", textPart, allocator);
+
+                            nodeArray.PushBack(node, allocator);
+
+                            emptyData = false;
                         }
+                    }
+                    else
+                    {
+                        for (map<uint32_t,paysGraphe>::iterator it = mapIP.begin(); it != mapIP.end(); it++)
+                        {
+                            rapidjson::Value node(rapidjson::kObjectType);
 
-                        textPart.SetString(ipInformation.countryCodeToCountryString(it->first).c_str(), allocator);
-                        node.AddMember("id", it->second.id, allocator);
-                        node.AddMember("label", textPart, allocator);
-                        node.AddMember("x", dist(rd), allocator);
-                        node.AddMember("y", dist(rd), allocator);
+                            uint32_t tailleNoeud = paysNombreCran*10;
+                            for (uint32_t j=0; j<paysNombreCran-1; j++)
+                            {
+                                if (double(it->second.compteur) <= paysArrayCran[j])
+                                {
+                                    tailleNoeud = (j+1)*10;
+                                    break;
+                                }
+                            }
 
-                        node.AddMember("size", tailleNoeud, allocator);
-                        textPart.SetString(getColor(it->second.color).c_str(), allocator);
-                        node.AddMember("color", textPart, allocator);
+                            textPart.SetString(string(ipInformation.intToStringIP(it->first) + " (" + ipInformation.countryCodeToCountryString(ipInformation.getCountryCode(it->first)) + ")").c_str(), allocator);
+                            node.AddMember("id", it->second.id, allocator);
+                            node.AddMember("label", textPart, allocator);
+                            node.AddMember("x", dist(rd), allocator);
+                            node.AddMember("y", dist(rd), allocator);
 
-                        nodeArray.PushBack(node, allocator);
+                            node.AddMember("size", tailleNoeud, allocator);
+                            textPart.SetString(getColor(it->second.color).c_str(), allocator);
+                            node.AddMember("color", textPart, allocator);
 
-                        emptyData = false;
+                            nodeArray.PushBack(node, allocator);
+
+                            emptyData = false;
+                        }
                     }
 
                     // Ajouter les noeuds
@@ -3717,7 +3841,7 @@ public:
                         rapidjson::Value node(rapidjson::kObjectType);
 
                         uint32_t tailleNoeud = nodeNombreCran*10;
-                        for (uint32_t j=0;j<nodeNombreCran-1;j++)
+                        for (uint32_t j=0; j<nodeNombreCran-1; j++)
                         {
                             if (double(it->second.compteur) <= nodeArrayCran[j])
                             {
@@ -3780,7 +3904,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -3820,7 +3944,7 @@ private:
 
 public:
 
-    visualisationCarteAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, uint32_t limit) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), limit(limit){}
+    visualisationCarteAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, uint32_t limit) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), limit(limit) {}
     ~visualisationCarteAsync()
     {
         mtx.unlock();
@@ -3852,7 +3976,7 @@ public:
             bool lireDonnees = false;
             bool dateAtteinteBool = false;
 
-            for (uint32_t i=0;i<vectorDatePosition.size();i++)
+            for (uint32_t i=0; i<vectorDatePosition.size(); i++)
             {
                 if (lireDonnees == false)
                 {
@@ -3949,7 +4073,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -3991,7 +4115,7 @@ private:
 
 public:
 
-    visualisation2CarteAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int data, string username, string password) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), data(data), username(username), password(password){}
+    visualisation2CarteAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, int data, string username, string password) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), data(data), username(username), password(password) {}
     ~visualisation2CarteAsync()
     {
         mtx.unlock();
@@ -4070,7 +4194,7 @@ public:
             vector<pair<uint16_t, uint32_t>> vectorPaysAttaque;
             map<uint16_t,uint32_t> mapPaysAttaque;
 
-            for (uint32_t i=0;i<vectorDatePosition.size();i++)
+            for (uint32_t i=0; i<vectorDatePosition.size(); i++)
             {
                 if (lireDonnees == false)
                 {
@@ -4195,7 +4319,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -4235,7 +4359,7 @@ private:
 
 public:
 
-    visualisationUsernamePasswordCercleAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, uint32_t limit) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), limit(limit){}
+    visualisationUsernamePasswordCercleAsync(Callback *callback, int year1, int month1, int day1, int year2, int month2, int day2, uint32_t limit) : AsyncWorker(callback), year1(year1), month1(month1), day1(day1), year2(year2), month2(month2), day2(day2), limit(limit) {}
     ~visualisationUsernamePasswordCercleAsync()
     {
         mtx.unlock();
@@ -4282,7 +4406,7 @@ public:
             bool lireDonnees = false;
             bool dateAtteinteBool = false;
 
-            for (uint32_t i=0;i<vectorDatePosition.size();i++)
+            for (uint32_t i=0; i<vectorDatePosition.size(); i++)
             {
                 if (lireDonnees == false)
                 {
@@ -4424,7 +4548,7 @@ public:
             if (emptyData == false)
             {
                 char * bufferChar = new char[outputString.length()];
-                for (uint32_t i=0;i<outputString.length();i++) bufferChar[i] = outputString[i];
+                for (uint32_t i=0; i<outputString.length(); i++) bufferChar[i] = outputString[i];
 
                 Local<Object> buf = Nan::NewBuffer(bufferChar, outputString.length()).ToLocalChecked();
 
@@ -4658,13 +4782,15 @@ NAN_METHOD(visualisation2Carte)
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Lecture du fichier de logs, fonction synchrone
-void Readfile(const v8::FunctionCallbackInfo<Value>& args) {
+void Readfile(const v8::FunctionCallbackInfo<Value>& args)
+{
 
     Isolate* isolate = args.GetIsolate();
 
-    if (args.Length() < 2) {
+    if (args.Length() < 2)
+    {
         isolate->ThrowException(Exception::TypeError(
-        String::NewFromUtf8(isolate, "No enough arguments (geo location file, ssh logs)")));
+                                    String::NewFromUtf8(isolate, "No enough arguments (geo location file, ssh logs)")));
         return;
     }
 
