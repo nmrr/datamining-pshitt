@@ -3052,7 +3052,7 @@ public:
                     bool lireDonnees = false;
                     bool dateAtteinteBool = false;
 
-                    for (uint32_t i=0; i<vectorDatePosition.size(); i++)
+                    for (uint32_t i=0;i<vectorDatePosition.size();i++)
                     {
                         if (lireDonnees == false)
                         {
@@ -3093,7 +3093,6 @@ public:
                                         if (itCountry == mapPaysArgs.end())
                                         {
                                             paysGraphe tmp;
-
                                             if (ip == 0)
                                             {
                                                 tmp.id = compteurNodeID++;
@@ -3125,7 +3124,7 @@ public:
                                         }
                                     }
 
-                                    //cout << j << " " << vectorLogSSH[j].sourceIP << " " << vectorUsername[vectorLogSSH[j].username] << " " << vectorPassword[vectorLogSSH[j].password] << endl;
+                                    //cout << j << " " << vectorUsername[vectorLogSSH[j].username] << " " << vectorPassword[vectorLogSSH[j].password] << endl;
 
                                     map<uint32_t,structNode>::iterator itNode = mapNode.find((data == 0 ? vectorLogSSH[j].username : vectorLogSSH[j].password));
                                     if (itNode == mapNode.end())
@@ -3148,7 +3147,7 @@ public:
 
                                         structEdge tmpEdge;
                                         tmpEdge.id = compteurEdgeID;
-                                        tmpEdge.color = itIP->second.color;
+                                        tmpEdge.color = itCountry->second.color;
 
                                         mapNode[(data == 0 ? vectorLogSSH[j].username : vectorLogSSH[j].password)] = tmpNode;
 
