@@ -143,6 +143,11 @@
           {
             document.getElementById('titre').innerHTML = paysJson.text;
 
+            if (paysJson.limit === true)
+            {
+                alert("Données tronquées")
+            }
+
             var settings = {
               labelThreshold: 0,
               //labelColor: "node",

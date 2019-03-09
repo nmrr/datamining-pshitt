@@ -515,6 +515,9 @@ public:
     {
         mtx.lock();
 
+        // Pour éviter la saturation de la mémoire
+        if (limit == 0 || limit > 1000) limit = 1000;
+
         if (!dateAtteinte(vectorLogSSH[0].year, vectorLogSSH[0].month, vectorLogSSH[0].day, year1, month1, day1))
         {
             error = 1;
@@ -596,7 +599,6 @@ public:
                 rapidjson::Value recipients3(rapidjson::kArrayType);
 
                 uint32_t compteurLimit = 0;
-                bool compter = (limit == 0 ? false : true);
 
                 for (uint32_t i=0; i<vectorPaysAttaqueLePlus.size(); i++)
                 {
@@ -614,11 +616,8 @@ public:
                     recipient3.AddMember("size", vectorPaysAttaqueLePlus[position].second, allocator);
                     recipients3.PushBack(recipient3, allocator);
 
-                    if (compter == true)
-                    {
-                        compteurLimit++;
-                        if (compteurLimit == limit) break;
-                    }
+                      compteurLimit++;
+                      if (compteurLimit == limit) break;
                 }
 
                 if (emptyData == false)
@@ -627,7 +626,6 @@ public:
                     document.AddMember("children", recipients3, allocator);
 
                     //////////////////////////////////////////////////////
-
 
                     rapidjson::StringBuffer strbuf;
                     rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
@@ -708,7 +706,6 @@ public:
                 rapidjson::Value recipients3(rapidjson::kArrayType);
 
                 uint32_t compteurLimit = 0;
-                bool compter = (limit == 0 ? false : true);
 
                 for (uint32_t i=0; i<vectorUsernameLePlus.size(); i++)
                 {
@@ -730,11 +727,8 @@ public:
                     recipient3.AddMember("size", vectorUsernameLePlus[position].second, allocator);
                     recipients3.PushBack(recipient3, allocator);
 
-                    if (compter == true)
-                    {
-                        compteurLimit++;
-                        if (compteurLimit == limit) break;
-                    }
+                    compteurLimit++;
+                    if (compteurLimit == limit) break;
                 }
 
                 if (emptyData == false)
@@ -743,7 +737,6 @@ public:
                     document.AddMember("children", recipients3, allocator);
 
                     //////////////////////////////////////////////////////
-
 
                     rapidjson::StringBuffer strbuf;
                     rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
@@ -821,7 +814,6 @@ public:
                 rapidjson::Value recipients3(rapidjson::kArrayType);
 
                 uint32_t compteurLimit = 0;
-                bool compter = (limit == 0 ? false : true);
 
                 for (uint32_t i=0; i<vectorUsernameLePlus.size(); i++)
                 {
@@ -846,11 +838,8 @@ public:
                     recipient3.AddMember("size", vectorUsernameLePlus[position].second, allocator);
                     recipients3.PushBack(recipient3, allocator);
 
-                    if (compter == true)
-                    {
-                        compteurLimit++;
-                        if (compteurLimit == limit) break;
-                    }
+                    compteurLimit++;
+                    if (compteurLimit == limit) break;
                 }
 
                 if (emptyData == false)
@@ -859,7 +848,6 @@ public:
                     document.AddMember("children", recipients3, allocator);
 
                     //////////////////////////////////////////////////////
-
 
                     rapidjson::StringBuffer strbuf;
                     rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
@@ -935,7 +923,6 @@ public:
                 rapidjson::Value recipients3(rapidjson::kArrayType);
 
                 uint32_t compteurLimit = 0;
-                bool compter = (limit == 0 ? false : true);
 
                 for (uint32_t i=0; i<vectorUsernameLePlus.size(); i++)
                 {
@@ -954,11 +941,8 @@ public:
                     recipient3.AddMember("size", vectorUsernameLePlus[position].second, allocator);
                     recipients3.PushBack(recipient3, allocator);
 
-                    if (compter == true)
-                    {
-                        compteurLimit++;
-                        if (compteurLimit == limit) break;
-                    }
+                    compteurLimit++;
+                    if (compteurLimit == limit) break;
                 }
 
                 if (emptyData == false)
@@ -1392,7 +1376,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////////
 
-// Visualisation des données lorsque l'utilisateur spécifie un unsername, un password ou les deux
+// Visualisation des données lorsque l'utilisateur spécifie un username, un password ou un couple username : password
 class visualisation2Async : public AsyncWorker
 {
 
@@ -1649,7 +1633,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////////
 
-// Pour obtenir les limites temporelles des logs
+// Pour obtenir les limites temporelles des données
 class dateAsync : public AsyncWorker
 {
 
@@ -1707,7 +1691,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////////
 
-// Pour obtenir la liste des pays qui ont attaqués entre deux dates
+// Pour obtenir la liste des pays qui ont attaqué entre deux dates
 class paysAsync : public AsyncWorker
 {
 
@@ -1875,6 +1859,10 @@ class anomalieAsync : public AsyncWorker
 {
 
 private:
+
+    const uint32_t LIMIT_ITEM = 20000;
+    const uint32_t LIMIT_EDGE = 50000;
+    bool limitAtteinte = false;
 
     string outputString;
     int year1, month1, day1;
@@ -2313,7 +2301,6 @@ public:
                                         map<uint32_t, pair<uint32_t, map<uint16_t, uint32_t>>>::iterator it = mapDataAnomalie.find(rechercheData);
                                         if (it == mapDataAnomalie.end())
                                         {
-
                                             map<uint16_t, uint32_t> mapTmp;
                                             mapTmp[vectorLogSSH[j].country] = 1;
 
@@ -2435,9 +2422,15 @@ public:
                                         {
                                             cout << "ERREUR !!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
                                         }
-
-
                                     }
+
+                                    if (compteurNodeID >= LIMIT_ITEM || compteurEdgeID >= LIMIT_EDGE)
+                                    {
+                                        limitAtteinte = true;
+                                        cout << "limitAtteinte anomalie : " << compteurNodeID << ", " << compteurEdgeID << endl;
+                                        break;
+                                    }
+
                                 }
                             }
 
@@ -2452,6 +2445,7 @@ public:
 
                                 textPart.SetString(stringTitre.c_str(), allocator);
                                 document.AddMember("text", textPart, allocator);
+                                document.AddMember("limit", limitAtteinte, allocator);
 
                                 rapidjson::StringBuffer strbuf;
                                 rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
@@ -2799,6 +2793,14 @@ public:
                                             cout << "ERREUR !!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
                                         }
                                     }
+
+                                    if (compteurNodeID >= LIMIT_ITEM || compteurEdgeID >= LIMIT_EDGE)
+                                    {
+                                        limitAtteinte = true;
+                                        cout << "limitAtteinte anomalie : " << compteurNodeID << ", " << compteurEdgeID << endl;
+                                        break;
+                                    }
+
                                 }
                             }
 
@@ -2813,6 +2815,7 @@ public:
 
                                 textPart.SetString(stringTitre.c_str(), allocator);
                                 document.AddMember("text", textPart, allocator);
+                                document.AddMember("limit", limitAtteinte, allocator);
 
                                 rapidjson::StringBuffer strbuf;
                                 rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
@@ -2868,6 +2871,10 @@ class paysGrapheAsync : public AsyncWorker
 {
 
 private:
+
+    const uint32_t LIMIT_ITEM = 20000;
+    const uint32_t LIMIT_EDGE = 50000;
+    bool limitAtteinte = false;
 
     string outputString;
     int year1, month1, day1;
@@ -3068,7 +3075,7 @@ public:
 
                         if (lireDonnees == true)
                         {
-                            if (dateAtteinteBool == true)
+                            if (dateAtteinteBool == true || limitAtteinte == true)
                             {
                                 break;
                             }
@@ -3200,6 +3207,16 @@ public:
                                         if (ip == 0) itCountry->second.compteur++;
                                         else itIP->second.compteur++;
                                     }
+                                }
+
+                                if (compteurNodeID >= LIMIT_ITEM || compteurEdgeID >= LIMIT_EDGE)
+                                {
+                                    limitAtteinte = true;
+                                    year2 = vectorDatePosition[i].year;
+                                    month2 = vectorDatePosition[i].month;
+                                    day2 = vectorDatePosition[i].day;
+                                    cout << "limitAtteinte : " << compteurNodeID << ", " << compteurEdgeID << endl;
+                                    break;
                                 }
                             }
                         }
@@ -3460,6 +3477,8 @@ public:
                     textPart.SetString(textString.c_str(), allocator);
                     document.AddMember("text", textPart, allocator);
 
+                    document.AddMember("limit", limitAtteinte, allocator);
+
                     rapidjson::StringBuffer strbuf;
                     rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);
                     document.Accept(writer);
@@ -3492,7 +3511,7 @@ public:
 
                         if (lireDonnees == true)
                         {
-                            if (dateAtteinteBool == true)
+                            if (dateAtteinteBool == true || limitAtteinte == true)
                             {
                                 break;
                             }
@@ -3626,6 +3645,17 @@ public:
                                         else itIP->second.compteur++;
                                     }
                                 }
+
+                                if (compteurNodeID >= LIMIT_ITEM || compteurEdgeID >= LIMIT_EDGE)
+                                {
+                                    limitAtteinte = true;
+                                    year2 = vectorDatePosition[i].year;
+                                    month2 = vectorDatePosition[i].month;
+                                    day2 = vectorDatePosition[i].day;
+                                    cout << "limitAtteinte : " << compteurNodeID << ", " << compteurEdgeID << endl;
+                                    break;
+                                }
+
                             }
                         }
                     }
@@ -3884,6 +3914,8 @@ public:
                     string textString = "pays - usernamepassword - " + to_string(year1) + "/" + to_string(month1) + "/" + to_string(day1) + ", " + to_string(year2) + "/" + to_string(month2) + "/" + to_string(day2);
                     textPart.SetString(textString.c_str(), allocator);
                     document.AddMember("text", textPart, allocator);
+
+                    document.AddMember("limit", limitAtteinte, allocator);
 
                     rapidjson::StringBuffer strbuf;
                     rapidjson::Writer<rapidjson::StringBuffer> writer(strbuf);

@@ -24,7 +24,7 @@ h1 {text-align:center;}
   <option value="attaque">attaques par jour</option>
   <option value="username">username</option>
   <option value="password">password</option>
-  <option value="usernamepassword">usernamepassword</option>
+  <option value="usernamepassword">username : password</option>
   <option value="port">port</option>
   <option value="ip">ip</option>
   <option value="country">country</option>
@@ -35,18 +35,18 @@ h1 {text-align:center;}
 </div>
 
 <div class="form-group">
-<label for="start" id="debuttxt">Date de début</label> 
+<label for="start" id="debuttxt">Date de début</label>
   <input type="date" class="form-control" name="debut" id="start">
 </div>
 
 <div class="form-group">
-<label for="end" id="fintxt">Date de fin</label> 
+<label for="end" id="fintxt">Date de fin</label>
   <input type="date" class="form-control" name="fin" id="end">
 </div>
 
 <div class="form-group">
-  <label for="limite">Limite</label> 
-  <input type="number" class="form-control" name="limite" min="0" value=50 id="limite" required>
+  <label for="limite">Limite</label>
+  <input type="number" class="form-control" name="limite" min=0 max=1000 value=100 id="limite" required>
 </div>
 
 <div class="form-group">
@@ -82,7 +82,7 @@ function getData()
   {
     if (affichageInt !== 2)
     {
-      document.getElementById("affichage").innerHTML = '<option value="cercle2">relation username password</option>\n<option value="cercle">graphe en cercle</option>\n<option value="tableau">tableau</option>\n';
+      document.getElementById("affichage").innerHTML = '<option value="cercle2">relation username : password</option>\n<option value="cercle">graphe en cercle</option>\n<option value="tableau">tableau</option>\n';
       affichageInt = 2;
     }
   }
@@ -91,7 +91,7 @@ function getData()
     if (affichageInt !== 3)
     {
       document.getElementById("affichage").innerHTML = '<option value="linear">graphe dans le temps</option>\n<option value="cercle">graphe en cercle</option>\n<option value="tableau">tableau</option>\n';
-      
+
       affichageInt = 3;
     }
   }
@@ -119,22 +119,22 @@ var year1 = 0, month1 = 0, day1 = 0, year2 = 0, month2 = 0, day2 = 0;
 var limits = undefined;
 
 var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() 
+xhttp.onreadystatechange = function()
 {
-  if (this.readyState == 4) 
+  if (this.readyState == 4)
   {
     if (this.status >= 100)
     {
       if (this.status == 200)
       {
-        try 
+        try
         {
             limits = JSON.parse(this.responseText);
         }
-        catch (e) 
+        catch (e)
         {
           limits = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
         }
 
         if (limits !== undefined)
@@ -193,7 +193,7 @@ xhttp.onreadystatechange = function()
           dateString += element;
           document.getElementById("end").value = dateString;
           document.getElementById("fintxt").innerHTML += " (limite : " + dateString + ")";
-          
+
           document.getElementById("start").setAttribute("max", dateString);
           document.getElementById("end").setAttribute("max", dateString);
 
@@ -203,7 +203,7 @@ xhttp.onreadystatechange = function()
       else
       {
         alert("status : " + this.status + ", " + this.responseText);
-      } 
+      }
     }
   }
 };
@@ -215,4 +215,3 @@ xhttp.send();
 </script>
 
 </html>
-

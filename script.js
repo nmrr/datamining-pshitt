@@ -275,7 +275,7 @@ app.get('/form/visualisation.html', function (req, res) {
     }
 });
 
-// Redirection de l'utilisateur vers la visualisation choisie (visualisation spécifique aux username, password)
+// Redirection de l'utilisateur vers la visualisation choisie (visualisation spécifique aux usernames, passwords)
 app.get('/form/visualisation2.html', function (req, res) {
 
     var args = "?data=" + req.query.data + "&debut=" + req.query.debut + "&fin=" + req.query.fin + "&username=" + (req.query.username !== undefined ? req.query.username : "") + "&password=" + (req.query.password !== undefined ? req.query.password : "");
@@ -439,7 +439,7 @@ app.get('/generator/linear.csv', function (req, res) {
     });
 });
 
-// Pour le graphe des attaques dans le temps (visualisation spécifique aux username, password)
+// Pour le graphe des attaques dans le temps (visualisation spécifique aux usernames, passwords)
 app.get('/generator/linear2.csv', function (req, res) {
 
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
@@ -612,7 +612,7 @@ app.get('/generator/linear2.csv', function (req, res) {
     }
 });
 
-// Graphe des attaques en fonctions des pays
+// Graphe des attaques en fonction des pays
 app.get('/generator/pays.json', function (req, res) {
 
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
@@ -1340,7 +1340,7 @@ app.get('/generator/carte.csv', function (req, res) {
     });
 });
 
-// Visualisation des données générale, cercles oranges et liste
+// Visualisation des données générales, graphe en cercle et liste
 app.get('/generator/visualisation.json', function (req, res) {
 
 
@@ -1517,7 +1517,7 @@ app.get('/generator/visualisation.json', function (req, res) {
     }
 });
 
-// Visualisation spécifique aux username et password, cerlces oranges et liste
+// Visualisation spécifique aux usernames et passwords, graphe en cercle et liste
 app.get('/generator/visualisation2.json', function (req, res) {
 
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;
@@ -1690,7 +1690,7 @@ app.get('/generator/visualisation2.json', function (req, res) {
     }
 });
 
-// Carte de la visualisation des username / password
+// Carte de la visualisation des usernames / passwords
 app.get('/generator/carte2.csv', function (req, res) {
 
     var yearstart = 0, monthstart = 0, daystart = 0, yearend = 0, monthend = 0, dayend = 0;

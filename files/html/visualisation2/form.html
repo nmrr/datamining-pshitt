@@ -16,7 +16,7 @@ h1 {text-align:center;}
 </head>
 <body>
 
-<form name="form" action="/form/visualisation2.html" method="get" target="_blank" onChange="getData();">
+<form name="form" action="/form/visualisation2.html" method="get" target="_blank" onChange="getData();" onsubmit="return validateForm()">
 
 <div class="form-group">
 <label for="data">Type de données</label>
@@ -25,27 +25,6 @@ h1 {text-align:center;}
   <option value="password">password</option>
   <option value="usernamepassword">usernamepassword</option>
   </select>
-</div>
-
-<div class="form-group">
-<label for="start" id="debuttxt">Date de début</label> 
-  <input type="date" class="form-control" name="debut" id="start">
-</div>
-
-<div class="form-group">
-<label for="end" id="fintxt">Date de fin</label> 
-  <input type="date" class="form-control" name="fin" id="end">
-</div>
-
-
-<div class="form-group">
-<label for="username">Username</label> 
-  <input type="text" class="form-control" name="username" id="username" disabled>
-</div>
-
-<div class="form-group">
-<label for="password">Password</label> 
-  <input type="text" class="form-control" name="password" id="password" disabled>
 </div>
 
 <div class="form-group">
@@ -59,6 +38,29 @@ h1 {text-align:center;}
 </div>
 
 <div class="form-group">
+<label for="start" id="debuttxt">Date de début</label>
+  <input type="date" class="form-control" name="debut" id="start">
+</div>
+
+<div class="form-group">
+<label for="end" id="fintxt">Date de fin</label>
+  <input type="date" class="form-control" name="fin" id="end">
+</div>
+
+<input type="text" name="username" id="username" hidden>
+<input type="text" name="password" id="password" hidden>
+
+<div class="form-group">
+<label for="usernameForm">Username</label>
+  <input type="text" class="form-control" name="usernameForm" id="usernameForm" disabled>
+</div>
+
+<div class="form-group">
+<label for="passwordForm">Password</label>
+  <input type="text" class="form-control" name="passwordForm" id="passwordForm" disabled>
+</div>
+
+<div class="form-group">
 <input type="submit" class="form-control" id="submit" value="Envoyer" disabled>
 </div>
 </form>
@@ -69,22 +71,30 @@ h1 {text-align:center;}
 
 getData();
 
+function validateForm() {
+
+  document.getElementById("username").value = encodeURIComponent(document.getElementById("usernameForm").value);
+  document.getElementById("password").value = encodeURIComponent(document.getElementById("passwordForm").value);
+
+  return true;
+}
+
 function getData()
 {
   if (document.getElementById("data").value === "username")
   {
-    document.getElementById("username").disabled = false;
-    document.getElementById("password").disabled = true;
+    document.getElementById("usernameForm").disabled = false;
+    document.getElementById("passwordForm").disabled = true;
   }
   else if (document.getElementById("data").value === "password")
   {
-    document.getElementById("username").disabled = true;
-    document.getElementById("password").disabled = false;
+    document.getElementById("usernameForm").disabled = true;
+    document.getElementById("passwordForm").disabled = false;
   }
   else
   {
-    document.getElementById("username").disabled = false;
-    document.getElementById("password").disabled = false;
+    document.getElementById("usernameForm").disabled = false;
+    document.getElementById("passwordForm").disabled = false;
   }
 }
 
@@ -93,22 +103,22 @@ var year1 = 0, month1 = 0, day1 = 0, year2 = 0, month2 = 0, day2 = 0;
 var limits = undefined;
 
 var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() 
+xhttp.onreadystatechange = function()
 {
-  if (this.readyState == 4) 
+  if (this.readyState == 4)
   {
     if (this.status >= 100)
     {
       if (this.status == 200)
       {
-        try 
+        try
         {
             limits = JSON.parse(this.responseText);
         }
-        catch (e) 
+        catch (e)
         {
           limits = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
         }
 
         if (limits !== undefined)
@@ -177,7 +187,7 @@ xhttp.onreadystatechange = function()
       else
       {
         alert("status : " + this.status + ", " + this.responseText);
-      } 
+      }
     }
   }
 };
