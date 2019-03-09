@@ -50,4 +50,5 @@ Un dataset d'une semaine de récolte de données est présent dans le dossier **
 ### Changelog
 
 **09/07/2018** : ajout de la visualisation des IP dans la partie **Visualisation des attaques par pays**
+
 **09/03/2019** : échappement des caractères dans la recherche, ajout d’une limite lors de la génération des graphes (20k nœuds et 50k liens), modifications diverses dans les formulaires
