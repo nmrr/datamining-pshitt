@@ -26,54 +26,54 @@ h1 {text-align:center;}
   <select name="data" class="form-control" id="data">
   <option value="username">username</option>
   <option value="password">password</option>
-  <option value="usernamepassword">usernamepassword</option>
+  <option value="usernamepassword">username : password</option>
   </select>
 </div>
 
 <div class="form-group">
-<label for="debutapp" id="debutapptxt">Début de l'apprentissage</label> 
+<label for="debutapp" id="debutapptxt">Début de l'apprentissage</label>
   <input type="date" class="form-control" name="debutapp" id="debutapp" disabled onChange="changementDate1();">
 </div>
 
 <div class="form-group">
-<label for="finapp" id="finapptxt">Fin de l'apprentissage</label> 
+<label for="finapp" id="finapptxt">Fin de l'apprentissage</label>
   <input type="date" class="form-control" name="finapp" id="finapp" disabled onChange="changementDate2();">
 </div>
 
 <div class="form-group">
-<label for="fin" id="fintxt">Fin de la recherche</label> 
+<label for="fin" id="fintxt">Fin de la recherche</label>
   <input type="date" class="form-control" name="fin" id="fin" disabled onChange="changementDate3();">
 </div>
 
 <div class="form-group">
-<label for="seuilapp">Seuil d'apprentissage</label> 
+<label for="seuilapp">Seuil d'apprentissage</label>
   <input type="number" min="1" value="1" class="form-control" name="seuilapp" id="seuilapp" >
 </div>
 
 <div class="form-group">
-<label for="seuil">Seuil d'anomalie</label> 
-  <input type="number" min="1" value="10" class="form-control" name="seuil" id="seuil" >
+<label for="seuil">Seuil d'anomalie</label>
+  <input type="number" min="1" value="3" class="form-control" name="seuil" id="seuil" >
 </div>
 
 <div class="form-group">
-<label for="paysapp">Pays pour l'apprentissage</label> 
+<label for="paysapp">Pays pour l'apprentissage</label>
   <select multiple name="" class="form-control" id="paysapp" disabled size=20>
   </select>
 </div>
 
 <div class="checkbox">
-  <label for="paysappbox">Tous les pays pour l'apprentissage</label> 
+  <label for="paysappbox">Tous les pays pour l'apprentissage</label>
   <input type="checkbox" id="paysappbox" value="1">
 </div>
 
 <div class="form-group">
-<label for="pays">Pays</label> 
+<label for="pays">Pays</label>
   <select multiple name="" class="form-control" id="pays" disabled size=20>
   </select>
 </div>
 
 <div class="checkbox">
-  <label for="paysbox">Tous les pays</label> 
+  <label for="paysbox">Tous les pays</label>
   <input type="checkbox" id="paysbox" value="1">
 </div>
 
@@ -112,13 +112,13 @@ function validateForm() {
       alert("pas de pays pour l'apprentissage")
       return false;
     }
-    else document.getElementById("listepaysapp").value = listeArg; 
+    else document.getElementById("listepaysapp").value = listeArg;
   }
   else
   {
-    document.getElementById("listepaysapp").value = "false"; 
+    document.getElementById("listepaysapp").value = "false";
   }
-  
+
   if (document.getElementById("paysbox").checked == false)
   {
     var liste = document.getElementById("pays");
@@ -134,17 +134,17 @@ function validateForm() {
         trait = true;
       }
     }
-    
+
     if (listeArg.length === 0)
     {
       alert("pas de pays")
       return false;
     }
-    else document.getElementById("listepays").value = listeArg; 
+    else document.getElementById("listepays").value = listeArg;
   }
   else
   {
-    document.getElementById("listepays").value = "false"; 
+    document.getElementById("listepays").value = "false";
   }
 
   return true
@@ -153,22 +153,22 @@ function validateForm() {
 function changementDate1()
 {
   var xhttpPaysapp = new XMLHttpRequest();
-  xhttpPaysapp.onreadystatechange = function() 
+  xhttpPaysapp.onreadystatechange = function()
   {
-    if (this.readyState == 4) 
+    if (this.readyState == 4)
     {
       if (this.status >= 100)
       {
         if (this.status == 200)
         {
-          try 
+          try
           {
               paysappJson = JSON.parse(this.responseText);
           }
-          catch (e) 
+          catch (e)
           {
             paysappJson = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
           }
 
           if (paysappJson !== undefined)
@@ -192,7 +192,7 @@ function changementDate1()
           document.getElementById("debutapptxt").style.color = "#ff0000";
           document.getElementById("debutapp").style = "border-color: #ff0000;";
           //alert("status : " + this.status + ", " + this.responseText);
-        } 
+        }
       }
     }
   };
@@ -211,22 +211,22 @@ function changementDate2()
 function changementDate3()
 {
   var xhttpPays = new XMLHttpRequest();
-  xhttpPays.onreadystatechange = function() 
+  xhttpPays.onreadystatechange = function()
   {
-    if (this.readyState == 4) 
+    if (this.readyState == 4)
     {
       if (this.status >= 100)
       {
         if (this.status == 200)
         {
-          try 
+          try
           {
               paysJson = JSON.parse(this.responseText);
           }
-          catch (e) 
+          catch (e)
           {
             paysJson = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
           }
 
           if (paysJson !== undefined)
@@ -250,7 +250,7 @@ function changementDate3()
           document.getElementById("fintxt").style.color = "#ff0000";
           document.getElementById("fin").style = "border-color: #ff0000;";
           //alert("status : " + this.status + ", " + this.responseText);
-        } 
+        }
       }
     }
   };
@@ -261,34 +261,26 @@ function changementDate3()
 }
 
 var xhttpDate = new XMLHttpRequest();
-xhttpDate.onreadystatechange = function() 
+xhttpDate.onreadystatechange = function()
 {
-  if (this.readyState == 4) 
+  if (this.readyState == 4)
   {
     if (this.status >= 100)
     {
       if (this.status == 200)
       {
-        try 
+        try
         {
             limits = JSON.parse(this.responseText);
         }
-        catch (e) 
+        catch (e)
         {
           limits = undefined;
-            alert("Parsing error:", e); 
+            alert("Parsing error:", e);
         }
 
         if (limits !== undefined)
         {
-          year1 = limits.year1;
-          month1 = limits.month1;
-          day1 = limits.day1;
-
-          year2 = limits.year2;
-          month2 = limits.month2;
-          day2 = limits.day2;
-
           var dateString = "";
 
           var element = String(limits.year1);
@@ -315,6 +307,31 @@ xhttpDate.onreadystatechange = function()
           document.getElementById("debutapp").setAttribute("min", dateString);
           document.getElementById("finapp").setAttribute("min", dateString);
           document.getElementById("fin").setAttribute("min", dateString);
+
+          var d = new Date(limits.year2, limits.month2-1, limits.day2);
+          d.setTime(d.getTime() - 86400*7);
+
+          year3 = d.getFullYear()
+          month3 = d.getMonth()+1
+          day3 = d.getDay()
+
+          var dateString = "";
+
+          var element = String(year3);
+          while(element.length < 4) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(month3);
+          while(element.length < 2) element = '0' + element;
+
+          dateString += element + '-';
+          element = "";
+
+          element = String(day3);
+          while(element.length < 2) element = '0' + element;
+          dateString += element;
 
           document.getElementById("finapp").value = dateString;
 
@@ -358,7 +375,7 @@ xhttpDate.onreadystatechange = function()
       else
       {
         alert("status : " + this.status + ", " + this.responseText);
-      } 
+      }
     }
   }
 };
