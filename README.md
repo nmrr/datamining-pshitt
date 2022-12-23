@@ -71,15 +71,15 @@ Un dataset d'une semaine de récolte de données est présent dans le dossier **
 
 Visualisation du nombre d'attaques par jour entre 2017 et 2022 :
 
-<img src="https://github.com/nmrr/datamining-pshitt/blob/main/img/pshitt1.png" width=75% height=75%>
+<img src="https://github.com/nmrr/datamining-pshitt/blob/master/img/pshitt1.png" width=75% height=75%>
 
 Visualisation des attaquants par pays :
 
-<img src="https://github.com/nmrr/datamining-pshitt/blob/main/img/pshitt2.png" width=75% height=75%>
+<img src="https://github.com/nmrr/datamining-pshitt/blob/master/img/pshitt2.png" width=75% height=75%>
 
 Exemple de graphe petit-monde généré par l'application :
 
-<img src="https://github.com/nmrr/datamining-pshitt/blob/main/img/pshitt3.png" width=75% height=75%>
+<img src="https://github.com/nmrr/datamining-pshitt/blob/master/img/pshitt3.png" width=75% height=75%>
 
 ### Changelog
 
