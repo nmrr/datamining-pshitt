@@ -81,6 +81,14 @@ Exemple de graphe petit-monde généré par l'application :
 
 <img src="https://github.com/nmrr/datamining-pshitt/blob/master/img/pshitt3.png" width=75% height=75%>
 
+Exemple de nouveaux noms d'utilisateur tentés dernièrement :
+
+<img src="https://github.com/nmrr/datamining-pshitt/blob/master/img/pshitt4.png" width=75% height=75%>
+
+Apparition du couple **pi/raspberry** (identifiants par défaut du serveur SSH du **Raspberry Pi**) dans les tentatives :
+
+<img src="https://github.com/nmrr/datamining-pshitt/blob/master/img/pshitt5.png" width=75% height=75%>
+
 ### Changelog
 
 **09/07/2018** : ajout de la visualisation des IP dans la partie **Visualisation des attaques par pays**
