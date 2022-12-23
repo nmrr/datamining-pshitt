@@ -1,6 +1,6 @@
 # datamining-pshitt
 
-> Je remercie l'équipe du Cyber Hacking Lab (Nabil Bouzerna et Flavien Quesnel) de l'IRT SystemX pour avoir Inspiré ces travaux de R&D
+> Je remercie l'équipe du Cyber Hacking Lab (Nabil Bouzerna et Flavien Quesnel) de l'IRT SystemX pour avoir Inspiré ces travaux de R&D ainsi que Babiga Birregah, mon tuteur de projet côté UTT
 
 Ce projet a été réalisé en collaboration entre [**l'UTT (Université de technologie de Troyes)**](https://www.utt.fr/) et [**l'IRT SystemX**](https://www.irt-systemx.fr/) dans le cadre d'une TX (projet étudiant encadré) au printemps 2017. L'objectif de ce projet était d'analyser des logs provenant d'un **pot de miel** (honeypot) : un faux serveur SSH (pshitt) est installé sur un serveur et ce dernier répond systèmatiquement en cas de tentative de connexion que les identifiants tentés sont incorrects. Les informations des tentatives de connexion sont sauvegardées pour y être analysées.
 
