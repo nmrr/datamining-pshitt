@@ -8,10 +8,13 @@ Exemple d'attaque :
 
 #####  {"username": "usr", "try": 1, "src_port": 59880, "software_version": "libssh2_1.4.3", "timestamp": "2017-08-01T00:01:42.666293", "src_ip": "138.197.0.147", "mac": "hmac-sha1", "cipher": "aes128-ctr", "password": "usr"}
 
-Dans cette attaque, l'attaquant a essayé de se connecter avec l'identifiant **usr** et le mot de passe **usr** le **01/08/2017** à **01H42**. Cette attaque vient des **USA**, cette information a été obtenue à partir de son adresse IP. Ces informations là sont les plus intéressantes, les autres informations n'apportent que peu d'informations.
+Dans cette attaque, l'attaquant a essayé de se connecter avec l'identifiant **usr** et le mot de passe **usr** le **01/08/2017** à **01H42**. Cette attaque vient des **USA**, cette information a été obtenue à partir de son adresse IP.
 
-Dans un premier temps, l'objectif a été de visualiser ces données. **D3.js** a été utilisé pour visualiser de manière générale les données (représentation des attaquants sur une carte géographique, statistiques sur les usernames/passwords les plus utilisés, etc). A l'aide de **Linkurious.js** (sigma.js amélioré), ces données ont été représentées sous la forme d'arbres : des corrélations entre les attaques et leur provenance sont réalisées.
-Dans un deuxième temps, un outil de visualisation des nouvelles attaques a été créé. Cet outil permet de déterminer les nouvelles attaques qui, jusqu'à une certaine date n'ont jamais été tentées. Cela permet de déterminer les nouvelles tendances et donc, les nouvelles cibles.
+Dans un premier temps, l'objectif a été de visualiser ces données. **D3.js** a été utilisé pour visualiser les données de manière générale (représentation des attaquants sur une carte géographique, statistiques sur les usernames/passwords les plus utilisés, etc). 
+
+A l'aide de **Linkurious.js** (fork de sigma.js), ces données ont été représentées sous la forme de graphes petits-mondes : des corrélations entre les attaques et leur provenance sont réalisées.
+
+Dans un deuxième temps, un outil de visualisation des nouvelles attaques a été créé. Cet outil permet de déterminer les nouvelles attaques qui, jusqu'à une certaine date n'ont jamais été tentées. Cela permet de déterminer les nouvelles cibles du moment, exemple : un objet connecté vulnérable
 
 -----------------------------------
 
@@ -23,21 +26,36 @@ Certains logiciels sont nécessaires :  **Node.js**, **node-gyp**, **build-essen
 
 Pour installer **Node.js** : https://nodejs.org/en/download/
 
-Installer **node-gyp**  de manière globale : **sudo npm install node-gyp -g**
+Installer **node-gyp**  de manière globale : 
+```
+sudo npm install node-gyp -g
+```
 
 Installer l'environnement de développement : **sudo apt install build-essential rapidjson-dev** (pour une distribution basée sur Debian)
 
 #### Préparation du logiciel
 
-Cloner le repo : **git clone https://github.com/nmrr/datamining-pshitt.git**
+Cloner le repo : 
+```
+git clone https://github.com/nmrr/datamining-pshitt.git
+```
 
 Se placer dans le dossier **datamining-pshitt**
 
-Installer les dépendances : **npm install nan express**
+Installer les dépendances : 
+```
+npm install nan express
+```
 
-Compiler le projet : **node-gyp configure build**
+Compiler le projet :
+```
+node-gyp configure build
+```
 
-Lancer le logiciel : **node script.js**
+Lancer le logiciel :
+```
+node script.js
+```
 
 Ouvrir le navigateur Internet et se rendre à l'adresse suivante : **http://127.0.0.1:8888**
 
@@ -46,6 +64,8 @@ Ouvrir le navigateur Internet et se rendre à l'adresse suivante : **http://127.
 Un dataset d'une semaine de récolte de données est présent dans le dossier **ressources**.
 
 -----------------------------------
+
+### Galerie
 
 ### Changelog
 
