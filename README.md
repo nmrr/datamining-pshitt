@@ -2,7 +2,7 @@
 
 > Je remercie l'équipe du Cyber Hacking Lab (Nabil Bouzerna et Flavien Quesnel) de l'IRT SystemX pour avoir Inspiré ces travaux de R&D
 
-Ce projet a été réalisé en collaboration entre l'UTT (Université de technologie de Troyes) et l'IRT SystemX dans le cadre d'une TX (projet étudiant encadré) au printemps 2017. L'objectif de ce projet était d'analyser des logs provenant d'un pot de miel (honeypot) : un faux serveur SSH (pshitt) est installé sur un serveur et ce logiciel récupère les informations des tentatives d'intrusion.
+Ce projet a été réalisé en collaboration entre [**l'UTT (Université de technologie de Troyes)**](https://www.utt.fr/) et [**l'IRT SystemX**](https://www.irt-systemx.fr/)) dans le cadre d'une TX (projet étudiant encadré) au printemps 2017. L'objectif de ce projet était d'analyser des logs provenant d'un **pot de miel** (honeypot) : un faux serveur SSH (pshitt) est installé sur un serveur et ce dernier répond systèmatiquement en cas de tentative de connexion que les identifiants tentés sont incorrects. Les informations des tentatives de connexion sont sauvegardées pour y être analysées.
 
 Exemple d'attaque :
 
@@ -25,6 +25,8 @@ Dans un deuxième temps, un outil de visualisation des nouvelles attaques a ét�
 Certains logiciels sont nécessaires :  **Node.js**, **node-gyp**, **build-essential** et **rapidjson-dev**
 
 Pour installer **Node.js** : https://nodejs.org/en/download/
+
+**Attention !** Ce projet n'a pas été mis à jour de puis longtemps. La dernière version de **Node.js** compatible est la version 10, qui est obsolète depuis début 2021 ! Des changements ont été effectuées concernant les modules compilés, cela explique l'incompatibilité avec les versions supérieures.
 
 Installer **node-gyp**  de manière globale : 
 ```
